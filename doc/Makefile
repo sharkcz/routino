@@ -24,9 +24,9 @@ include ../Makefile.conf
 
 # Files to install
 
-HTML_FILES=$(notdir $(wildcard html/*.html)) $(notdir $(wildcard html/*.css))
+HTML_FILES=html/*.html html/*.css html/*.png
 TXT_FILES=*.txt
-TOP_FILES=../agpl-3.0.txt
+TOP_FILES=../agpl-3.0.txt ../ChangeLog
 
 ########
 
@@ -43,19 +43,19 @@ install: install-txt install-html
 install-txt:
 	@[ -d $(DESTDIR)$(docdir) ] || mkdir -p $(DESTDIR)$(docdir)
 	@for file in $(TOP_FILES); do \
-	    echo cp $$file $(DESTDIR)$(docdir) ;\
-	    cp -f $$file $(DESTDIR)$(docdir) ;\
+	    echo cp -pf $$file $(DESTDIR)$(docdir) ;\
+	    cp -pf $$file $(DESTDIR)$(docdir) ;\
 	 done
 	@for file in $(TXT_FILES); do \
-	    echo cp $$file $(DESTDIR)$(docdir) ;\
-	    cp -f $$file $(DESTDIR)$(docdir) ;\
+	    echo cp -pf $$file $(DESTDIR)$(docdir) ;\
+	    cp -pf $$file $(DESTDIR)$(docdir) ;\
 	 done
 
 install-html:
 	@[ -d $(DESTDIR)$(docdir)/html ] || mkdir -p $(DESTDIR)$(docdir)/html
 	@for file in $(HTML_FILES); do \
-	    echo cp html/$$file $(DESTDIR)$(docdir)/html ;\
-	    cp -f html/$$file $(DESTDIR)$(docdir)/html ;\
+	    echo cp -pf $$file $(DESTDIR)$(docdir)/html ;\
+	    cp -pf $$file $(DESTDIR)$(docdir)/html ;\
 	 done
 
 ########
