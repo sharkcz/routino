@@ -56,12 +56,12 @@ test:
 install: all
 	@[ -d $(DESTDIR)$(datadir) ] || mkdir -p $(DESTDIR)$(datadir)
 	@for file in $(STANDARD_FILES) ; do \
-	    echo cp routino-$$file $(DESTDIR)$(datadir)/$$file ;\
-	    cp -f routino-$$file $(DESTDIR)$(datadir)/$$file ;\
+	    echo cp -pf routino-$$file $(DESTDIR)$(datadir)/$$file ;\
+	    cp -pf routino-$$file $(DESTDIR)$(datadir)/$$file ;\
 	 done
 	@for file in $(SPECIAL_FILES); do \
-	    echo cp $$file $(DESTDIR)$(datadir)/$$file ;\
-	    cp -f $$file $(DESTDIR)$(datadir)/$$file ;\
+	    echo cp -pf $$file $(DESTDIR)$(datadir)/$$file ;\
+	    cp -pf $$file $(DESTDIR)$(datadir)/$$file ;\
 	 done
 
 ########

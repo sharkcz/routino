@@ -284,21 +284,21 @@ install-local: all-local
 	@[ -d $(DESTDIR)$(bindir) ] || mkdir -p $(DESTDIR)$(bindir)
 	@for file in $(EXE); do \
 	    if [ -f $$file ]; then \
-	       echo cp $$file $(DESTDIR)$(bindir) ;\
-	       cp -f $$file $(DESTDIR)$(bindir) ;\
+	       echo install -p $$file $(DESTDIR)$(bindir) ;\
+	       install -p $$file $(DESTDIR)$(bindir) ;\
 	    fi ;\
 	 done
 	@[ -d $(DESTDIR)$(incdir) ] || mkdir -p $(DESTDIR)$(incdir)
 	@for file in $(INC); do \
 	    if [ -f $$file ]; then \
-	       echo cp $$file $(DESTDIR)$(incdir) ;\
-	       cp -f $$file $(DESTDIR)$(incdir) ;\
+	       echo cp -pf $$file $(DESTDIR)$(incdir) ;\
+	       cp -pf $$file $(DESTDIR)$(incdir) ;\
 	    fi ;\
 	 done
 	@[ -d $(DESTDIR)$(libdir) ] || mkdir -p $(DESTDIR)$(libdir)
 	@for file in $(LIB); do \
 	    if [ -f $$file ]; then \
-	       echo cp $$file $(DESTDIR)$(libdir) ;\
+	       echo cp -df $$file $(DESTDIR)$(libdir) ;\
 	       cp -df $$file $(DESTDIR)$(libdir) ;\
 	    fi ;\
 	 done
@@ -330,6 +330,9 @@ distclean: distclean-local
 distclean-local: clean-local
 
 ########
+
+.deps:
+	@[ -d .deps ] || mkdir $@
 
 include $(D)
 
