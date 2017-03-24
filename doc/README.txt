@@ -96,7 +96,7 @@ Documentation
    generated are described in OUTPUT.txt.
 
    Detailed information about how to use the programs is available in the
-   file USAGE.txt and how to install it is in INSTALL.txt.
+   file USAGE.txt.
 
 
 Status
