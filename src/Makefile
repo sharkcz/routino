@@ -284,8 +284,8 @@ install-local: all-local
 	@[ -d $(DESTDIR)$(bindir) ] || mkdir -p $(DESTDIR)$(bindir)
 	@for file in $(EXE); do \
 	    if [ -f $$file ]; then \
-	       echo install -p $$file $(DESTDIR)$(bindir) ;\
-	       install -p $$file $(DESTDIR)$(bindir) ;\
+	       echo install -p $$file $(DESTDIR)$(bindir)/routino-$$file ;\
+	       install -p $$file $(DESTDIR)$(bindir)/routino-$$file ;\
 	    fi ;\
 	 done
 	@[ -d $(DESTDIR)$(incdir) ] || mkdir -p $(DESTDIR)$(incdir)
