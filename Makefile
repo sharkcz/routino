@@ -24,7 +24,7 @@ include Makefile.conf
 
 # Sub-directories and sub-makefiles
 
-SUBDIRS=src xml doc python
+SUBDIRS=src xml doc
 
 ########
 
