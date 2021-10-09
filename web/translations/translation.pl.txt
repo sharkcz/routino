@@ -64,6 +64,8 @@
 %%output-html_waypoint_roundabout%%	Rondo
 %%output-html_title%%	%s Trasa
 %%output-html_start%%	Start %s kieruj się na %s
+%%output-html_node%%	Jedź %s, dalej %s przez %s
+%%output-html_rbnode%%	Zjedź %s, skręć w %s, następnie %s
 %%output-html_segment%%	Podążaj %s przez %.3f km, %.1f min.
 %%output-html_stop%%	Stop Na %s
 %%output-html_total%%	Całkowity %.1f km, %.0f min.
@@ -117,6 +119,10 @@
 @@STATISTICS-BOX@@	Statystyki Routino
 @@VISUALISER-BOX@@	Wizualizer Routino
 
+@@WAYPOINT-POSITION@@	Punkt XXX trasy
+@@WAYPOINT-LONGITUDE@@	Punkt XXX długości geograficznej
+@@WAYPOINT-LATITUDE@@	Punkt XXX szerokości geograficznej
+@@WAYPOINT-LOCATION@@	Punkt orientacyjny XXX
 @@WAYPOINT-SEARCH@@	Znajdź miejsce
 @@WAYPOINT-GET@@	Pobierz aktualna lokalizację
 @@WAYPOINT-CENTRE1@@	Wycentruj mapę na tym punkcie
@@ -125,6 +131,12 @@
 @@WAYPOINT-COORDS@@	Współrzędne dla lokalizacji
 @@WAYPOINT-HOME@@	Współrzędne lokalizacji
 @@WAYPOINT-CENTRE2@@	Wyśrodkuj ten punkt na mapie
+@@WAYPOINT-DOWN@@	Przesuń punkt na dół
+@@WAYPOINT-REMOVE@@	Usuń punkt
+@@WAYPOINT-REVERSE@@	Odwrotna kolejność punktów trasy
+@@WAYPOINT-REVERSE-BUTTON@@	Odwrotna kolejność
+@@WAYPOINT-LOOP@@	Dodaj nowy punkt, aby zrobić pętlę
+@@WAYPOINT-LOOP-BUTTON@@	Zamknij pętlę
 
 @@TRANSPORT-FOOT@@	Pieszo
 @@TRANSPORT-HORSE@@	Konno
@@ -133,6 +145,7 @@
 @@TRANSPORT-MOPED@@	Moped
 @@TRANSPORT-MOTORCYCLE@@	Motocykl
 @@TRANSPORT-MOTORCAR@@	Samochód
+@@TRANSPORT-GOODS@@	Dobra
 @@TRANSPORT-HGV@@	Pojazd ciężarowy
 @@TRANSPORT-PSV@@	Pojazd użyteczności publicznej
 
@@ -143,8 +156,10 @@
 @@HIGHWAY-UNCLASSIFIED@@	Niesklasyfikowana
 @@HIGHWAY-RESIDENTIAL@@	W obszarze zamieszkania
 @@HIGHWAY-SERVICE@@	Dojazdowa
+@@HIGHWAY-TRACK@@	Ścieżka
 @@HIGHWAY-CYCLEWAY@@	Rowerowa
 @@HIGHWAY-PATH@@	Ścieżka
+@@HIGHWAY-STEPS@@	Kroki
 @@HIGHWAY-FERRY@@	Przeprawa
 
 @@PROPERTY-MULTILANE@@	Wiele pasów

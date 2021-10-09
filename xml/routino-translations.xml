@@ -915,8 +915,8 @@
       <title text="%s Trasa" /> <!-- %s = [shortest|quickest] -->
 
       <start    text="Start %s kieruj się na %s" /> <!-- 1st %s = [waypoint|junction], 2nd %s = [heading] -->
-      <!-- TRANSLATION REQUIRED: node     text="At %s, go %s heading %s" / --> <!-- 1st %s = [waypoint|junction], 2nd %s = [turn], 3rd %s = [heading] -->
-      <!-- TRANSLATION REQUIRED: rbnode   text="Leave %s, take the %s exit heading %s" / --> <!-- 1st %s = [roundabout], 2nd %s = [first|second|...], 3rd %s = [heading] -->
+      <node     text="Jedź %s, dalej %s przez %s" /> <!-- 1st %s = [waypoint|junction], 2nd %s = [turn], 3rd %s = [heading] -->
+      <rbnode   text="Zjedź %s, skręć w %s, następnie %s" /> <!-- 1st %s = [roundabout], 2nd %s = [first|second|...], 3rd %s = [heading] -->
       <segment  text="Podążaj %s przez %.3f km, %.1f min." /> <!-- 1st %s = street name -->
       <stop     text="Stop Na %s" /> <!-- 1st %s = [waypoint|junction] -->
       <total    text="Całkowity %.1f km, %.0f min." />
