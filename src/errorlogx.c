@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2013-2015, 2019 Andrew M. Bishop
+ This file Copyright 2013-2015, 2019, 2022 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -618,90 +618,100 @@ static int lookup_lat_long_way(WaysX *waysx,NodesX *nodesx,way_t way,latlong_t *
 
 static int lookup_lat_long_relation(RelationsX *relationsx,WaysX *waysx,NodesX *nodesx,relation_t relation,latlong_t *latitude,latlong_t *longitude,index_t error)
 {
- index_t index=IndexRouteRelX(relationsx,relation);
+ int iteration;
+ index_t index;
+
+ /* Is it a turn relation? */
+
+ index=IndexTurnRelX(relationsx,relation);
 
  if(index==NO_RELATION)
+    return 0;
+ else
    {
-    index=IndexTurnRelX(relationsx,relation);
+    TurnRelX turnrelx;
+
+    SeekFileBuffered(relationsx->trfd,index*sizeof(TurnRelX));
+    ReadFileBuffered(relationsx->trfd,&turnrelx,sizeof(TurnRelX));
+
+    if(lookup_lat_long_node(nodesx,turnrelx.via,latitude,longitude))
+       return 1;
+
+    if(lookup_lat_long_way(waysx,nodesx,turnrelx.from,latitude,longitude,error))
+       return 1;
+
+    if(lookup_lat_long_way(waysx,nodesx,turnrelx.to,latitude,longitude,error))
+       return 1;
+
+    return 0;
+   }
+
+ /* Is it a route relation? */
+
+ for(iteration=0;iteration<8;iteration++)
+   {
+    index=IndexRouteRelX(relationsx,relation);
 
     if(index==NO_RELATION)
        return 0;
     else
       {
-       TurnRelX turnrelx;
+       int count;
+       offset_t offset=relationsx->rrodata[index];
+       node_t node=NO_NODE_ID,tempnode;
+       way_t way=NO_WAY_ID,tempway;
+       relation_t temprelation;
 
-       SeekFileBuffered(relationsx->trfd,index*sizeof(TurnRelX));
-       ReadFileBuffered(relationsx->trfd,&turnrelx,sizeof(TurnRelX));
+       SeekFileBuffered(relationsx->rrfd,offset);
 
-       if(lookup_lat_long_node(nodesx,turnrelx.via,latitude,longitude))
+       /* Choose a random node */
+
+       count=0;
+
+       while(!ReadFileBuffered(relationsx->rrfd,&tempnode,sizeof(node_t)) && tempnode!=NO_NODE_ID)
+         {
+          count++;
+
+          if((error%count)==0)     /* A 1/count chance */
+             node=tempnode;
+         }
+
+       if(count && lookup_lat_long_node(nodesx,node,latitude,longitude))
           return 1;
 
-       if(lookup_lat_long_way(waysx,nodesx,turnrelx.from,latitude,longitude,error))
+       /* Choose a random way */
+
+       count=0;
+
+       while(!ReadFileBuffered(relationsx->rrfd,&tempway,sizeof(way_t)) && tempway!=NO_WAY_ID)
+         {
+          count++;
+
+          if((error%count)==0)     /* A 1/count chance */
+             way=tempway;
+         }
+
+       if(count && lookup_lat_long_way(waysx,nodesx,way,latitude,longitude,error))
           return 1;
 
-       if(lookup_lat_long_way(waysx,nodesx,turnrelx.to,latitude,longitude,error))
-          return 1;
+       /* Choose a random relation */
 
-       return 0;
+       count=0;
+
+       while(!ReadFileBuffered(relationsx->rrfd,&temprelation,sizeof(relation_t)) && temprelation!=NO_RELATION_ID)
+         {
+          count++;
+
+          if((error%count)==0)     /* A 1/count chance */
+             relation=temprelation;
+         }
+
+       if(!count)
+          return 0;
       }
    }
- else
-   {
-    int count;
-    offset_t offset=relationsx->rrodata[index];
-    node_t node=NO_NODE_ID,tempnode;
-    way_t way=NO_WAY_ID,tempway;
-    relation_t relation=NO_RELATION_ID,temprelation;
 
-    SeekFileBuffered(relationsx->rrfd,offset);
-
-    /* Choose a random node */
-
-    count=0;
-
-    while(!ReadFileBuffered(relationsx->rrfd,&tempnode,sizeof(node_t)) && tempnode!=NO_NODE_ID)
-      {
-       count++;
-
-       if((error%count)==0)     /* A 1/count chance */
-          node=tempnode;
-      }
-
-    if(count && lookup_lat_long_node(nodesx,node,latitude,longitude))
-       return 1;
-
-    /* Choose a random way */
-
-    count=0;
-
-    while(!ReadFileBuffered(relationsx->rrfd,&tempway,sizeof(way_t)) && tempway!=NO_WAY_ID)
-      {
-       count++;
-
-       if((error%count)==0)     /* A 1/count chance */
-          way=tempway;
-      }
-
-    if(count && lookup_lat_long_way(waysx,nodesx,way,latitude,longitude,error))
-       return 1;
-
-    /* Choose a random relation */
-
-    count=0;
-
-    while(!ReadFileBuffered(relationsx->rrfd,&temprelation,sizeof(relation_t)) && temprelation!=NO_RELATION_ID)
-      {
-       count++;
-
-       if((error%count)==0)     /* A 1/count chance */
-          relation=temprelation;
-      }
-
-    if(count && lookup_lat_long_relation(relationsx,waysx,nodesx,relation,latitude,longitude,error))
-       return 1;
-
-    return 0;
-   }
+ return 0;
 }
 
 
