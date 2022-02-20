@@ -226,6 +226,11 @@
 @@VISUALISER-NUM-ERRORS@@	# erreurs de log traitées
 
 @@JUNCTIONS-BUTTON@@	Afficher les intersections
+$$JUNCTIONS-INFO$$
+Chaque nœud qui est une impasse, une jonction de deux autoroutes de différents
+types (ou propriétés différentes) ou une jonction où plus de deux segments
+joins sont affichés avec un code couleur.
+$$JUNCTIONS-INFO$$
 @@JUNCTIONS-1@@	Chaussée simple - Sans issue
 @@JUNCTIONS-2@@	Carrefour de deux routes de différents types
 @@JUNCTIONS-3@@	Carrefour à trois intersections
@@ -239,6 +244,14 @@
 @@WAYTYPE-BUTTON@@	Afficher type de route du Segments
 
 @@WAYTYPE-ONEWAY@@	Segments à sens unique
+@@WAYTYPE-ROUNDABOUT@@	Tronçons de rond-point
+
+@@HIGHWAY-BUTTON@@	Afficher les tronçons d'autoroute
+$$HIGHWAY-INFO$$
+Chaque segment du type d'autoroute choisi est dessiné.
+$$HIGHWAY-INFO$$
+
+@@TRANSPORT-BUTTON@@	Afficher les segments de transport
 
 @@SPEED-BUTTON@@	Afficher les limites de vitesse
 
@@ -265,6 +278,9 @@
 @@PROPERTY-BUTTON@@	Afficher propriétés route
 
 @@ERROR-LOG-BUTTON@@	Afficher le journal des erreurs
+$$ERROR-LOG-INFO$$
+Problèmes potentiels rencontrés par Routino lors du traitement des données d'entrée.
+$$ERROR-LOG-INFO$$
 
 @@CLEAR-DATA-BUTTON@@	Effacer données
 
@@ -375,3 +391,16 @@ $$ROUTER-VISUALISER-INFO$$
 # Multi-line descriptive translations (visualiser)
 #
 
+$$VISUALISER-INFO$$
+Cette page Web permet de visualiser les données que Routino utilise pour le routage.
+Seules les données pertinentes pour le routage sont affichées et certaines seront donc exclues.
+$$VISUALISER-INFO$$
+
+$$VISUALISER-INSTRUCTIONS$$
+Zoomez puis utilisez les boutons ci-dessous pour télécharger les données. le
+Le serveur ne renverra des données que si la zone sélectionnée est suffisamment petite.
+$$VISUALISER-INSTRUCTIONS$$
+
+$$VISUALISER-ROUTER-INFO$$
+Pour effectuer le routage sur la carte utilisez le lien ci-dessous.
+$$VISUALISER-ROUTER-INFO$$
