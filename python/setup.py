@@ -2,7 +2,7 @@
 #
 # Part of the Routino routing software.
 #
-# This file Copyright 2018 Andrew M. Bishop
+# This file Copyright 2018, 2022 Andrew M. Bishop
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,7 @@
 
 import os
 import re
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 
 routino_router = Extension('routino._router',
                            sources = ['src/_router.c'],
