@@ -378,16 +378,12 @@ void RemoveNonHighwayNodes(NodesX *nodesx,WaysX *waysx,int keep)
  BitMask *usednode;
  NodeX nodex;
  index_t i,total=0,highway=0,nothighway=0;
+ node_t bitmasklength;
  int fd;
 
  /* Print the start message */
 
  printf_first("Checking Ways for unused Nodes: Ways=0 Highway Nodes=0");
-
- /* Allocate the node usage bitmask */
-
- usednode=AllocBitMask(nodesx->number);
- log_malloc(usednode,SizeBitMask(nodesx->number));
 
  /* Re-open the file read-only */
 
@@ -396,6 +392,17 @@ void RemoveNonHighwayNodes(NodesX *nodesx,WaysX *waysx,int keep)
  /* Map the index into memory */
 
  nodesx->idata=MapFile(nodesx->ifilename_tmp);
+
+ /* Allocate the node usage bitmask */
+
+#if SLIM
+ bitmasklength=nodesx->number;                     /* The number of nodes in the database */
+#else
+ bitmasklength=nodesx->idata[nodesx->number-1]+1;  /* One more than the highest OSM node number in the database */
+#endif
+
+ usednode=AllocBitMask(bitmasklength);
+ log_malloc(usednode,SizeBitMask(bitmasklength));
 
  /* Loop through the ways and mark the used nodes */
 
@@ -411,17 +418,23 @@ void RemoveNonHighwayNodes(NodesX *nodesx,WaysX *waysx,int keep)
 
     while(!ReadFileBuffered(waysx->fd,&node,sizeof(node_t)) && node!=NO_NODE_ID)
       {
-       index_t index=IndexNodeX(nodesx,node);
+#if SLIM
+       index_t index=IndexNodeX(nodesx,node); /* Index bitmap by node number in the database */
+#else
+       node_t index=node;                     /* Index bitmap by OSM node number */
+#endif
 
        waysize-=sizeof(node_t);
 
-       if(index!=NO_NODE)
-         {
-          if(!IsBitSet(usednode,index))
-             highway++;
+#if SLIM
+       if(index==NO_NODE)
+          continue;
+#endif
 
-          SetBit(usednode,index);
-         }
+       if(!IsBitSet(usednode,index))
+          highway++;
+
+       SetBit(usednode,index);
       }
 
     waysize-=sizeof(node_t)+sizeof(WayX);
@@ -472,7 +485,13 @@ void RemoveNonHighwayNodes(NodesX *nodesx,WaysX *waysx,int keep)
 
  while(!ReadFileBuffered(nodesx->fd,&nodex,sizeof(NodeX)))
    {
-    if(!IsBitSet(usednode,total))
+#if SLIM
+    index_t node=total;         /* Index by node number in the database */
+#else
+    node_t node=nodex.id;       /* Index by OSM node number */
+#endif
+
+    if(!IsBitSet(usednode,node))
        nothighway++;
     else
       {
