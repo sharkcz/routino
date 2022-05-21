@@ -4,7 +4,7 @@
 #
 # Part of the Routino routing software.
 #
-# This file Copyright 2013-2014 Andrew M. Bishop
+# This file Copyright 2013-2014, 2022 Andrew M. Bishop
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -29,6 +29,7 @@ open(SUBSECTION,">gnuplot.subsection.tmp");
 
 my $count=1;
 my $startcount=0;
+my $sectiontime=0;
 my $totaltime=0;
 
 while(<STDIN>)
@@ -39,13 +40,14 @@ while(<STDIN>)
 
    next if(m%^=%);
 
-   if( m%^\[ *([0-9]+):([0-9.]+)\] ([^:]+)% && ! m%Complete$% )
+   if( m%^\[ *([0-9]+):([0-9.]+)\]( \[[^]]+\])? *([^:]+)% && ! m%Finish Program$% )
      {
       my $time=(60.0*$1)+$2;
-      my $description=$3;
+      my $description=$4;
 
       print SUBSECTION "$count $time \"$description\"\n";
 
+      $sectiontime+=$time;
       $totaltime+=$time;
      }
    else
@@ -55,11 +57,11 @@ while(<STDIN>)
          my $boxcentre=($count+$startcount+0.5)/2;
          my $boxwidth=$count-$startcount-1;
 
-         print SECTION "$boxcentre $totaltime $boxwidth\n";
+         print SECTION "$boxcentre $sectiontime $boxwidth\n";
         }
 
       $startcount=$count-0.5;
-      $totaltime=0;
+      $sectiontime=0;
      }
 
    $count++;
@@ -74,7 +76,7 @@ open(GNUPLOT,"|gnuplot");
 
 print GNUPLOT <<EOF
 
-set title "Planetsplitter Execution Time"
+set title "Planetsplitter Execution Time (Total = $totaltime seconds)"
 
 set noxtics
 
