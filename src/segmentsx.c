@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2008-2015, 2019 Andrew M. Bishop
+ This file Copyright 2008-2015, 2019, 2022 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -406,7 +406,7 @@ void ProcessSegments(SegmentsX *segmentsx,NodesX *nodesx,WaysX *waysx)
  /* Allocate the way usage bitmask */
 
  segmentsx->usedway=AllocBitMask(waysx->number);
- log_malloc(segmentsx->usedway,LengthBitMask(waysx->number)*sizeof(BitMask));
+ log_malloc(segmentsx->usedway,SizeBitMask(waysx->number));
 
  /* Re-open the file read-only and a new file writeable */
 
@@ -644,7 +644,7 @@ void RemovePrunedSegments(SegmentsX *segmentsx,WaysX *waysx)
  /* Allocate the way usage bitmask */
 
  segmentsx->usedway=AllocBitMask(waysx->number);
- log_malloc(segmentsx->usedway,LengthBitMask(waysx->number)*sizeof(BitMask));
+ log_malloc(segmentsx->usedway,SizeBitMask(waysx->number));
 
  /* Re-open the file read-only and a new file writeable */
 

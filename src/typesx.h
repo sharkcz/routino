@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2008-2016, 2019 Andrew M. Bishop
+ This file Copyright 2008-2016, 2019, 2022 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -47,19 +47,20 @@
 
 /* Bit mask macro types and functions */
 
-#define BitMask uint32_t
+#define BitMask uint64_t
 
-#define LengthBitMask(xx)   (1+(xx)/32)
+#define LengthBitMask(xx)   (1+(xx)/64)
+#define SizeBitMask(xx)     (LengthBitMask(xx)*sizeof(BitMask))
 
 #define AllocBitMask(xx)    (BitMask*)calloc_logassert(LengthBitMask(xx),sizeof(BitMask))
 
-#define ClearAllBits(xx,yy) memset((xx), 0,(1+(yy)/32)*sizeof(BitMask))
-#define SetAllBits(xx,yy)   memset((xx),~0,(1+(yy)/32)*sizeof(BitMask))
+#define ClearAllBits(xx,yy) memset((xx), 0,SizeBitMask(yy))
+#define SetAllBits(xx,yy)   memset((xx),~0,SizeBitMask(yy))
 
-#define ClearBit(xx,yy)     (xx)[(yy)/32]&=~(((BitMask)1)<<((yy)%32))
-#define SetBit(xx,yy)       (xx)[(yy)/32]|= (((BitMask)1)<<((yy)%32))
+#define ClearBit(xx,yy)     (xx)[(yy)/64]&=~(((BitMask)1)<<((yy)%64))
+#define SetBit(xx,yy)       (xx)[(yy)/64]|= (((BitMask)1)<<((yy)%64))
 
-#define IsBitSet(xx,yy)    ((xx)[(yy)/32]&  (((BitMask)1)<<((yy)%32)))
+#define IsBitSet(xx,yy)    ((xx)[(yy)/64]&  (((BitMask)1)<<((yy)%64)))
 
 
 /* Simple Types */

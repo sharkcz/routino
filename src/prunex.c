@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2011-2014, 2019 Andrew M. Bishop
+ This file Copyright 2011-2014, 2019, 2022 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -185,8 +185,8 @@ void PruneIsolatedRegions(NodesX *nodesx,SegmentsX *segmentsx,WaysX *waysx,dista
  connected=AllocBitMask(segmentsx->number);
  region   =AllocBitMask(segmentsx->number);
 
- log_malloc(connected,LengthBitMask(segmentsx->number)*sizeof(BitMask));
- log_malloc(region   ,LengthBitMask(segmentsx->number)*sizeof(BitMask));
+ log_malloc(connected,SizeBitMask(segmentsx->number));
+ log_malloc(region   ,SizeBitMask(segmentsx->number));
 
  regionsegments=(index_t*)malloc_logassert((nallocregionsegments=1024)*sizeof(index_t));
  othersegments =(index_t*)malloc_logassert((nallocothersegments =1024)*sizeof(index_t));
@@ -910,7 +910,7 @@ void PruneStraightHighwayNodes(NodesX *nodesx,SegmentsX *segmentsx,WaysX *waysx,
 
  checked=AllocBitMask(nodesx->number);
 
- log_malloc(checked,LengthBitMask(nodesx->number)*sizeof(BitMask));
+ log_malloc(checked,SizeBitMask(nodesx->number));
 
  nodes   =(index_t*)malloc_logassert((nalloc=1024)*sizeof(index_t));
  segments=(index_t*)malloc_logassert( nalloc      *sizeof(index_t));

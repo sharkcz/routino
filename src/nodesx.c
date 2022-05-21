@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2008-2015, 2019, 2020 Andrew M. Bishop
+ This file Copyright 2008-2015, 2019, 2020, 2022 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -387,7 +387,7 @@ void RemoveNonHighwayNodes(NodesX *nodesx,WaysX *waysx,int keep)
  /* Allocate the node usage bitmask */
 
  usednode=AllocBitMask(nodesx->number);
- log_malloc(usednode,LengthBitMask(nodesx->number)*sizeof(BitMask));
+ log_malloc(usednode,SizeBitMask(nodesx->number));
 
  /* Re-open the file read-only */
 
