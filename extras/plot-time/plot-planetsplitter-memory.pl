@@ -22,6 +22,12 @@
 
 use strict;
 
+# Check the command line
+
+my $type="RAM";
+
+$type="Disk" if(length(@ARGV)>0 && $ARGV[0] eq "--disk");
+
 # Read the planetsplitter log file
 
 open(SECTION   ,">gnuplot.section.tmp");
@@ -29,8 +35,8 @@ open(SUBSECTION,">gnuplot.subsection.tmp");
 
 my $count=1;
 my $startcount=0;
-my $sectiontime=0;
-my $totaltime=0;
+my $sectionmemory=0;
+my $totalmemory=0;
 
 while(<STDIN>)
   {
@@ -40,15 +46,20 @@ while(<STDIN>)
 
    next if(m%^=%);
 
-   if( m%^\[ *([0-9]+):([0-9.]+)\]( \[[ 0-9,]+ MB\])? *([^:]+)% && ! m%Finish Program$% )
+   if( m%^(\[[ 0-9:.]+\] *)?\[ *([0-9]+), *([0-9]+) MB\] *([^:]+)% && ! m%Finish Program$% )
      {
-      my $time=(60.0*$1)+$2;
+      my $memory;
       my $description=$4;
 
-      print SUBSECTION "$count $time \"$description\"\n";
+      if($type eq "RAM")
+        { $memory=$2; }
+      else
+        { $memory=$3; }
 
-      $sectiontime+=$time;
-      $totaltime+=$time;
+      print SUBSECTION "$count $memory \"$description\"\n";
+
+      $sectionmemory=$memory if($memory>$sectionmemory);
+      $totalmemory=$memory if($memory>$totalmemory);
      }
    else
      {
@@ -57,11 +68,11 @@ while(<STDIN>)
          my $boxcentre=($count+$startcount+0.5)/2;
          my $boxwidth=$count-$startcount-1;
 
-         print SECTION "$boxcentre $sectiontime $boxwidth\n";
+         print SECTION "$boxcentre $sectionmemory $boxwidth\n";
         }
 
       $startcount=$count-0.5;
-      $sectiontime=0;
+      $sectionmemory=0;
      }
 
    $count++;
@@ -70,21 +81,19 @@ while(<STDIN>)
 close(SECTION);
 close(SUBSECTION);
 
-$totaltime = sprintf("%.1f",$totaltime);
-
 # Plot using gnuplot
 
 open(GNUPLOT,"|gnuplot");
 
 print GNUPLOT <<EOF
 
-set title "Planetsplitter Execution Time (Total = $totaltime seconds)"
+set title "Planetsplitter Execution Memory (Maximum $type = $totalmemory MB)"
 
 set noxtics
 
-set ylabel "Sub-section Time (seconds)"
+set ylabel "Sub-section Memory ($type MB)"
 set logscale y
-set yrange [0.001:]
+set yrange [1:]
 
 set style fill solid 1.0
 set boxwidth 0.8
@@ -98,9 +107,9 @@ set term png size 1000,750
 set output "planetsplitter.png"
 
 plot "gnuplot.section.tmp" using 1:2:3 with boxes linestyle 1, \\
-     "gnuplot.section.tmp" using 1:(\$2*1.1):(sprintf("%.1f",\$2)) with labels font "Sans,9" center textcolor rgbcolor "#000000", \\
+     "gnuplot.section.tmp" using 1:(\$2*1.1):(\$2) with labels font "Sans,9" center textcolor rgbcolor "#000000", \\
      "gnuplot.subsection.tmp" using 1:2 with boxes linestyle 2, \\
-     "gnuplot.subsection.tmp" using (\$1+0.1):(0.0013):3 with labels font "Sans,8" left rotate textcolor rgbcolor "#000000"
+     "gnuplot.subsection.tmp" using (\$1+0.1):(1.1):3 with labels font "Sans,8" left rotate textcolor rgbcolor "#000000"
 
 exit
 EOF
