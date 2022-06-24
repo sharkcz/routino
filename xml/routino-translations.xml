@@ -1028,4 +1028,96 @@
 
   </language>
 
+  <language lang="sk" language="Slovenčina">
+
+    <!-- Copyright of the data being routed, not of this file  -->
+    <copyright>
+      <creator string="Vyvíja" text="Routino - http://www.routino.org/" />
+      <source  string="Zdroj" text="Postavené na dátach OpenStreetMap z http://www.openstreetmap.org/" />
+      <license string="Licencia" text="http://www.openstreetmap.org/copyright" />
+    </copyright>
+
+    <!-- Turn directions, 0 = ahead, -2 = left, +/-4 = behind, +2 = right -->
+    <turn direction="-4" string="veľmi ostro vľavo" />
+    <turn direction="-3" string="ostro vľavo" />
+    <turn direction="-2" string="vľavo" />
+    <turn direction="-1" string="mierne vľavo" />
+    <turn direction="0"  string="priamo" />
+    <turn direction="1"  string="mierne vpravo" />
+    <turn direction="2"  string="vpravo" />
+    <turn direction="3"  string="ostro vpravo" />
+    <turn direction="4"  string="veľmi ostro vpravo" />
+
+    <!-- Heading directions, 0 = North, -2 = West, +/-4 = South, +2 = East -->
+    <heading direction="-4" string="Južne" />
+    <heading direction="-3" string="Juhozápadne" />
+    <heading direction="-2" string="Západne" />
+    <heading direction="-1" string="Severozápadne" />
+    <heading direction="0"  string="Severne" />
+    <heading direction="1"  string="Severovýchodne" />
+    <heading direction="2"  string="Východne" />
+    <heading direction="3"  string="Juhovýchodne" />
+    <heading direction="4"  string="Južne" />
+
+    <!-- Ordinals, 1 = first, 2 = second ... -->
+    <ordinal number="1"  string="Prvý" />
+    <ordinal number="2"  string="Druhý" />
+    <ordinal number="3"  string="Tretí" />
+    <ordinal number="4"  string="Štvrtý" />
+    <ordinal number="5"  string="Piaty" />
+    <ordinal number="6"  string="Šiesty" />
+    <ordinal number="7"  string="Siedmy" />
+    <ordinal number="8"  string="Ôsmy" />
+    <ordinal number="9"  string="Deviaty" />
+    <ordinal number="10" string="Desiaty" />
+
+    <!-- Highway names -->
+    <highway type="motorway"     string="diaľnici" />
+    <highway type="trunk"        string="hlavnej ceste" />
+    <highway type="primary"      string="ceste I. triedy" />
+    <highway type="secondary"    string="ceste II. triedy" />
+    <highway type="tertiary"     string="ceste III. triedy" />
+    <highway type="unclassified" string="neklasifikovanej ceste" />
+    <highway type="residential"  string="miestnej komunikácii" />
+    <highway type="service"      string="účelovej komunikácii" />
+    <highway type="track"        string="ceste" />
+    <highway type="cycleway"     string="cykloceste" />
+    <highway type="path"         string="ceste" />
+    <highway type="steps"        string="schodoch" />
+    <highway type="ferry"        string="prievoze" />
+
+    <!-- The type of route -->
+    <route type="shortest" string="Najkratšia" /> <!-- For the description and route name -->
+    <route type="quickest" string="Najrýchlejšia" /> <!-- For the description and route name -->
+
+    <!-- HTML output -->
+    <output-html>
+      <waypoint type="waypoint"   string="bode" /> <!-- For the chosen waypoints -->
+      <waypoint type="junction"   string="križovatke" /> <!-- For the interesting junctions -->
+      <waypoint type="roundabout" string="kruhový objazd" /> <!-- For roundabouts -->
+
+      <title text="%s Trasa" /> <!-- %s = [shortest|quickest] -->
+
+      <start    text="Začiatok v %s, %s" /> <!-- 1st %s = [waypoint|junction], 2nd %s = [heading] -->
+      <node     text="V %s odbočte %s, %s" /> <!-- 1st %s = [waypoint|junction], 2nd %s = [turn], 3rd %s = [heading] -->
+      <rbnode   text="Opustite %s, %s výjazd %s" /> <!-- 1st %s = [roundabout], 2nd %s = [first|second|...], 3rd %s = [heading] -->
+      <segment  text="Pokračujte po %s ďalších %.3f km, %.1f min" /> <!-- 1st %s = street name -->
+      <stop     text="Zastavte v %s" /> <!-- 1st %s = [waypoint|junction] -->
+      <total    text="Celkovo %.1f km, %.0f minút" />
+      <subtotal text="%.1f km, %.0f minút" />
+    </output-html>
+
+    <!-- GPX output -->
+    <output-gpx>
+      <waypoint type="waypt" string="BOD" /> <!-- For the route waypoints -->
+      <waypoint type="trip" string="CESTA" /> <!-- For the other route points -->
+
+      <desc  text="%s trasa medzi 'štartom' a 'cieľom' cez" /> <!-- %s = [shortest|quickest] -->
+      <name  text="%s trasa" /> <!-- %s = [shortest|quickest] -->
+      <step  text="%s po '%s' ďaľších %.3f km, %.1f min" /> <!-- 1st %s = [turn], 2nd %s = street name -->
+      <final text="Celková trasa %.1f km, %.0f minút" />
+    </output-gpx>
+
+  </language>
+
 </routino-translations>

@@ -1,0 +1,142 @@
+#
+# Slovak language translation phrases
+#
+
+#
+# Router output XML definition
+#
+
+%%copyright_creator_string%%	Vyvíja
+%%copyright_source_string%%	Zdroj
+%%copyright_source_text%%	Postavené na dátach OpenStreetMap z http://www.openstreetmap.org/
+%%copyright_license_string%%	Licencia
+
+%%turn_-4%%	veľmi ostro vľavo
+%%turn_-3%%	ostro vľavo
+%%turn_-2%%	vľavo
+%%turn_-1%%	mierne vľavo
+%%turn_0%%	priamo
+%%turn_1%%	mierne vpravo
+%%turn_2%%	vpravo
+%%turn_3%%	ostro vpravo
+%%turn_4%%	veľmi ostro vpravo
+
+%%heading_-4%%	Južne
+%%heading_-3%%	Juhozápadne
+%%heading_-2%%	Západne
+%%heading_-1%%	Severozápadne
+%%heading_0%%	Severne
+%%heading_1%%	Severovýchodne
+%%heading_2%%	Východne
+%%heading_3%%	Juhovýchodne
+%%heading_4%%	Južne
+
+%%ordinal_1%%	Prvý
+%%ordinal_2%%	Druhý
+%%ordinal_3%%	Tretí
+%%ordinal_4%%	Štvrtý
+%%ordinal_5%%	Piaty
+%%ordinal_6%%	Šiesty
+%%ordinal_7%%	Siedmy
+%%ordinal_8%%	Ôsmy
+%%ordinal_9%%	Deviaty
+%%ordinal_10%%	Desiaty
+
+%%highway_motorway%%	diaľnici
+%%highway_trunk%%	hlavnej ceste
+%%highway_primary%%	ceste I. triedy
+%%highway_secondary%%	ceste II. triedy
+%%highway_tertiary%%	ceste III. triedy
+%%highway_unclassified%%	neklasifikovanej ceste
+%%highway_residential%%	miestnej komunikácii
+%%highway_service%%	účelovej komunikácii
+%%highway_track%%	ceste
+%%highway_cycleway%%	cykloceste
+%%highway_path%%	ceste
+%%highway_steps%%	schodoch
+%%highway_ferry%%	prievoze
+
+%%route_shortest%%	Najkratšia
+%%route_quickest%%	Najrýchlejšia
+
+%%output-html_waypoint_waypoint%%	bode
+%%output-html_waypoint_junction%%	križovatke
+%%output-html_waypoint_roundabout%%	kruhový objazd
+%%output-html_title%%	%s Trasa
+%%output-html_start%%	Začiatok v %s, %s
+%%output-html_node%%	V %s odbočte %s, %s
+%%output-html_rbnode%%	Opustite %s, %s výjazd %s
+%%output-html_segment%%	Pokračujte po %s ďalších %.3f km, %.1f min
+%%output-html_stop%%	Zastavte v %s
+%%output-html_total%%	Celkovo %.1f km, %.0f minút
+%%output-html_subtotal%%	%.1f km, %.0f minút
+
+%%output-gpx_waypoint_waypt%%	BOD
+%%output-gpx_waypoint_trip%%	CESTA
+
+%%output-gpx_desc%%	%s trasa medzi 'štartom' a 'cieľom' cez
+%%output-gpx_name%%	%s trasa
+%%output-gpx_step%%	%s po '%s' ďaľších %.3f km, %.1f min
+%%output-gpx_final%%	Celková trasa %.1f km, %.0f minút
+
+#
+# Router (and some shared) translations
+#
+
+@@LANGUAGE@@	Slovenčina
+@@LANGUAGE-WEBPAGE@@	Stránka v slovenčine
+
+@@ROUTER-TITLE@@	Plánovač trás pre OpenStreetMap dáta
+
+@@OPTION-TAB@@	Možnosti
+@@OPTION-TAB-HELP@@	Nastaviť možnosti plánovania
+
+@@RESULTS-TAB@@	Výsledky
+@@RESULTS-TAB-HELP@@	Zobraziť výsledky plánovania
+
+@@DATA-TAB@@	Dáta
+@@DATA-TAB-HELP@@	Zobraziť informácie o databáze
+
+@@ROUTINO-ROUTER@@	Routino OpenStreetMap Plánovač
+@@ROUTINO-WEBSITE@@	Webová stránka Routino
+@@DOCUMENTATION@@	Dokumentácia
+
+@@LANGUAGE-BOX@@	Jazyk
+@@WAYPOINTS-BOX@@	Body
+@@TRANSPORT-TYPE-BOX@@	Typ prepravy
+@@HIGHWAY-PREFERENCES-BOX@@	Predvoľby pre diaľnice
+@@SPEED-LIMITS-BOX@@	Rychlostné limity
+@@OTHER-RESTRICTIONS-BOX@@	Iné obmedzenia
+@@FIND-BOX@@	Hľadať
+@@LINKS-BOX@@	Odkazy
+@@HELP-BOX@@	Pomoc
+
+@@STATUS-BOX@@	Stav
+@@SHORTEST-ROUTE@@	Najkratšia trasa
+@@QUICKEST-ROUTE@@	Najrýchlejšia trasa
+
+@@STATISTICS-BOX@@	Routino štatistiky
+@@VISUALISER-BOX@@	Routino vizualizér
+
+@@WAYPOINT-POSITION@@	Bod XXX Pozícia
+@@WAYPOINT-LONGITUDE@@	Bod XXX Zemepisná dĺžka
+@@WAYPOINT-LATITUDE@@	Bod XXX Zemepisná šírka
+@@WAYPOINT-LOCATION@@	Bod XXX Poloha
+@@WAYPOINT-SEARCH@@	Hľadaj polohu
+@@WAYPOINT-GET@@	Nájdi aktuálnu polohu
+@@WAYPOINT-CENTRE1@@	Vycentruj mapu v tomto bode
+
+@@TRANSPORT-HORSE@@	Kôň
+
+#
+# Visualiser specific translations
+#
+
+#
+# Multi-line descriptive translations (router)
+#
+
+#
+# Multi-line descriptive translations (visualiser)
+#
+
