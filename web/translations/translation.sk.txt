@@ -47,12 +47,12 @@
 %%highway_primary%%	ceste I. triedy
 %%highway_secondary%%	ceste II. triedy
 %%highway_tertiary%%	ceste III. triedy
-%%highway_unclassified%%	neklasifikovanej ceste
+%%highway_unclassified%%	neoznačenej ceste
 %%highway_residential%%	miestnej komunikácii
 %%highway_service%%	účelovej komunikácii
 %%highway_track%%	ceste
 %%highway_cycleway%%	cykloceste
-%%highway_path%%	ceste
+%%highway_path%%	chodníku
 %%highway_steps%%	schodoch
 %%highway_ferry%%	prievoze
 
@@ -104,8 +104,9 @@
 @@LANGUAGE-BOX@@	Jazyk
 @@WAYPOINTS-BOX@@	Body
 @@TRANSPORT-TYPE-BOX@@	Typ prepravy
-@@HIGHWAY-PREFERENCES-BOX@@	Predvoľby pre diaľnice
+@@HIGHWAY-PREFERENCES-BOX@@	Nastavenia ciest
 @@SPEED-LIMITS-BOX@@	Rychlostné limity
+@@PROPERTY-PREFERENCES-BOX@@	Rozšírené nastavenia ciest
 @@OTHER-RESTRICTIONS-BOX@@	Iné obmedzenia
 @@FIND-BOX@@	Hľadať
 @@LINKS-BOX@@	Odkazy
@@ -125,12 +126,83 @@
 @@WAYPOINT-SEARCH@@	Hľadaj polohu
 @@WAYPOINT-GET@@	Nájdi aktuálnu polohu
 @@WAYPOINT-CENTRE1@@	Vycentruj mapu v tomto bode
+@@WAYPOINT-UP@@	Posunúť tento bod vyššie
+@@WAYPOINT-ADD@@	Pridaj bod za tento
+@@WAYPOINT-COORDS@@	Súradnice pre polohu
+@@WAYPOINT-HOME@@	Prepnúť ako domovskú polohu
+@@WAYPOINT-CENTRE2@@	Vycentrovať tento bod na mape
+@@WAYPOINT-DOWN@@	Posunúť tento bod nižšie
+@@WAYPOINT-REMOVE@@	Odstraň tento bod
+@@WAYPOINT-REVERSE@@	Opačné poradie bodov
+@@WAYPOINT-REVERSE-BUTTON@@	Opačné poradie
+@@WAYPOINT-LOOP@@	Pridať bod pre vytvorenie okruhu
+@@WAYPOINT-LOOP-BUTTON@@	Uzavrieť okruh
 
+@@TRANSPORT-FOOT@@	Pešo
 @@TRANSPORT-HORSE@@	Kôň
+@@TRANSPORT-WHEELCHAIR@@	Invalidný vozík
+@@TRANSPORT-BICYCLE@@	Bicykel
+@@TRANSPORT-MOPED@@	Moped
+@@TRANSPORT-MOTORCYCLE@@	Motorka
+@@TRANSPORT-MOTORCAR@@	Motorové vozidlo
+@@TRANSPORT-GOODS@@	Nákladné vozidlo
+@@TRANSPORT-HGV@@	Ťažké nákladné auto
+@@TRANSPORT-PSV@@	Verejná doprava
+
+@@HIGHWAY-MOTORWAY@@	Diaľnica
+@@HIGHWAY-TRUNK@@	Hlavná cesta
+@@HIGHWAY-PRIMARY@@	Cesta I. triedy
+@@HIGHWAY-SECONDARY@@	Cesta II. triedy
+@@HIGHWAY-TERTIARY@@	Cesta III. triedy
+@@HIGHWAY-UNCLASSIFIED@@	Neoznačená cesta
+@@HIGHWAY-RESIDENTIAL@@	Miestna komunikácia
+@@HIGHWAY-SERVICE@@	Účelová komunikácia
+@@HIGHWAY-TRACK@@	Cesta
+@@HIGHWAY-CYCLEWAY@@	Cyklocesta
+@@HIGHWAY-PATH@@	Chodník
+@@HIGHWAY-STEPS@@	Schody
+@@HIGHWAY-FERRY@@	Prievoz
+
+@@PROPERTY-PAVED@@	Dláždená
+@@PROPERTY-MULTILANE@@	Viac pruhov
+@@PROPERTY-BRIDGE@@	Most
+@@PROPERTY-TUNNEL@@	Tunel
+@@PROPERTY-WALKINGROUTE@@	Pešia trasa
+@@PROPERTY-BICYCLEROUTE@@	Cyklotrasa
+
+@@RESTRICT-ONEWAY@@	Rešpektuj jednosmerky
+@@RESTRICT-TURNS@@	Rešpektuj obmedzenia odbočenia
+@@RESTRICT-WEIGHT@@	Hmotnosť
+@@RESTRICT-HEIGHT@@	Výška
+@@RESTRICT-WIDTH@@	Šírka
+@@RESTRICT-LENGTH@@	Dĺžka
+
+@@FIND-SHORTEST-ROUTE@@	Nájdi najkratšiu trasu
+@@FIND-QUICKEST-ROUTE@@	Nájdi najrýchlejšiu trasu
+
+@@MAP-VIEW-LINK@@	Odkaz na túto mapu
+@@EDIT-OSM-DATA@@	Upraviť tieto OSM dáta
+
+@@ROUTER-NOT-RUN@@	Plánovač nebeží
+@@ROUTER-RUNNING@@	Plánovač beží...
+@@ROUTER-COMPLETED@@	Plánovanie ukončené
+@@ROUTER-ERROR@@	Chyba plánovača
+@@ROUTER-FAILED@@	Zlyhalo spustenie plánovača
+@@VIEW-DETAILS@@	Zobraziť detaily
+
+@@NO-INFORMATION@@	Žiadne informácie
+@@TEXT-ROUTE@@	Textový súbor
+@@OPEN-POPUP@@	Otvor popup
+
+@@DISPLAY-STATISTICS@@	Zobraz štatistiky
+
+@@JAVASCRIPT-REQUIRED@@	Je <em>potrebné</em> zapnúť Javascript na prezeranie tejto webovej stránky pre potreby interaktívnej mapy.
 
 #
 # Visualiser specific translations
 #
+
+@@INSTRUCTIONS-BOX@@	Inštrukcie
 
 #
 # Multi-line descriptive translations (router)

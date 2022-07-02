@@ -121,7 +121,7 @@ Only data relevant for routing is displayed and some will therefore be excluded.
 </div>
 
 <div class="hideshow_box">
-<span class="hideshow_title">Instructions</span>
+<span class="hideshow_title">Inštrukcie</span>
 Zoom in and then use the buttons below to download the data. The
 server will only return data if the selected area is small enough.
 </div>
@@ -227,19 +227,19 @@ The colours of the triangles depend on the bearing of the highway segment.
 Each segment of the chosen type of highway is drawn.
 <form name="highways" id="highways" action="#" method="get" onsubmit="return false;">
 <table>
-<tr><td>Motorway: <td><input name="highway" type="radio" value="motorway" onchange="displayData('highway');">
-<tr><td>Trunk: <td><input name="highway" type="radio" value="trunk" onchange="displayData('highway');">
-<tr><td>Primary: <td><input name="highway" type="radio" value="primary" onchange="displayData('highway');" checked>
-<tr><td>Secondary: <td><input name="highway" type="radio" value="secondary" onchange="displayData('highway');">
-<tr><td>Tertiary: <td><input name="highway" type="radio" value="tertiary" onchange="displayData('highway');">
-<tr><td>Unclassified:<td><input name="highway" type="radio" value="unclassified" onchange="displayData('highway');">
-<tr><td>Residential: <td><input name="highway" type="radio" value="residential" onchange="displayData('highway');">
-<tr><td>Service: <td><input name="highway" type="radio" value="service" onchange="displayData('highway');">
-<tr><td>Track: <td><input name="highway" type="radio" value="track" onchange="displayData('highway');">
-<tr><td>Cycleway: <td><input name="highway" type="radio" value="cycleway" onchange="displayData('highway');">
-<tr><td>Path: <td><input name="highway" type="radio" value="path" onchange="displayData('highway');">
-<tr><td>Steps: <td><input name="highway" type="radio" value="steps" onchange="displayData('highway');">
-<tr><td>Ferry: <td><input name="highway" type="radio" value="ferry" onchange="displayData('highway');">
+<tr><td>Diaľnica: <td><input name="highway" type="radio" value="motorway" onchange="displayData('highway');">
+<tr><td>Hlavná cesta: <td><input name="highway" type="radio" value="trunk" onchange="displayData('highway');">
+<tr><td>Cesta I. triedy: <td><input name="highway" type="radio" value="primary" onchange="displayData('highway');" checked>
+<tr><td>Cesta II. triedy: <td><input name="highway" type="radio" value="secondary" onchange="displayData('highway');">
+<tr><td>Cesta III. triedy: <td><input name="highway" type="radio" value="tertiary" onchange="displayData('highway');">
+<tr><td>Neoznačená cesta:<td><input name="highway" type="radio" value="unclassified" onchange="displayData('highway');">
+<tr><td>Miestna komunikácia: <td><input name="highway" type="radio" value="residential" onchange="displayData('highway');">
+<tr><td>Účelová komunikácia: <td><input name="highway" type="radio" value="service" onchange="displayData('highway');">
+<tr><td>Cesta: <td><input name="highway" type="radio" value="track" onchange="displayData('highway');">
+<tr><td>Cyklocesta: <td><input name="highway" type="radio" value="cycleway" onchange="displayData('highway');">
+<tr><td>Chodník: <td><input name="highway" type="radio" value="path" onchange="displayData('highway');">
+<tr><td>Schody: <td><input name="highway" type="radio" value="steps" onchange="displayData('highway');">
+<tr><td>Prievoz: <td><input name="highway" type="radio" value="ferry" onchange="displayData('highway');">
 </table>
 </form>
 </div>
@@ -253,16 +253,16 @@ Each segment of the chosen type of highway is drawn.
 Each segment allowed for the chosen type of transport is drawn.
 <form name="transports" id="transports" action="#" method="get" onsubmit="return false;">
 <table>
-<tr><td>Foot: <td><input name="transport" type="radio" value="foot" onchange="displayData('transport');">
+<tr><td>Pešo: <td><input name="transport" type="radio" value="foot" onchange="displayData('transport');">
 <tr><td>Kôň: <td><input name="transport" type="radio" value="horse" onchange="displayData('transport');">
-<tr><td>Wheelchair:<td><input name="transport" type="radio" value="wheelchair" onchange="displayData('transport');">
-<tr><td>Bicycle: <td><input name="transport" type="radio" value="bicycle" onchange="displayData('transport');">
+<tr><td>Invalidný vozík:<td><input name="transport" type="radio" value="wheelchair" onchange="displayData('transport');">
+<tr><td>Bicykel: <td><input name="transport" type="radio" value="bicycle" onchange="displayData('transport');">
 <tr><td>Moped: <td><input name="transport" type="radio" value="moped" onchange="displayData('transport');">
-<tr><td>Motorcycle:<td><input name="transport" type="radio" value="motorcycle" onchange="displayData('transport');">
-<tr><td>Motorcar: <td><input name="transport" type="radio" value="motorcar" onchange="displayData('transport');" checked>
-<tr><td>Goods: <td><input name="transport" type="radio" value="goods" onchange="displayData('transport');">
-<tr><td>HGV: <td><input name="transport" type="radio" value="hgv" onchange="displayData('transport');">
-<tr><td>PSV: <td><input name="transport" type="radio" value="psv" onchange="displayData('transport');">
+<tr><td>Motorka:<td><input name="transport" type="radio" value="motorcycle" onchange="displayData('transport');">
+<tr><td>Motorové vozidlo: <td><input name="transport" type="radio" value="motorcar" onchange="displayData('transport');" checked>
+<tr><td>Nákladné vozidlo: <td><input name="transport" type="radio" value="goods" onchange="displayData('transport');">
+<tr><td>Ťažké nákladné auto: <td><input name="transport" type="radio" value="hgv" onchange="displayData('transport');">
+<tr><td>Verejná doprava: <td><input name="transport" type="radio" value="psv" onchange="displayData('transport');">
 </table>
 </form>
 </div>
@@ -276,16 +276,16 @@ Each segment allowed for the chosen type of transport is drawn.
 Each barrier blocking the chosen type of transport is drawn.
 <form name="barriers" id="barriers" action="#" method="get" onsubmit="return false;">
 <table>
-<tr><td>Foot: <td><input name="barrier" type="radio" value="foot" onchange="displayData('barrier');">
+<tr><td>Pešo: <td><input name="barrier" type="radio" value="foot" onchange="displayData('barrier');">
 <tr><td>Kôň: <td><input name="barrier" type="radio" value="horse" onchange="displayData('barrier');">
-<tr><td>Wheelchair:<td><input name="barrier" type="radio" value="wheelchair" onchange="displayData('barrier');">
-<tr><td>Bicycle: <td><input name="barrier" type="radio" value="bicycle" onchange="displayData('barrier');">
+<tr><td>Invalidný vozík:<td><input name="barrier" type="radio" value="wheelchair" onchange="displayData('barrier');">
+<tr><td>Bicykel: <td><input name="barrier" type="radio" value="bicycle" onchange="displayData('barrier');">
 <tr><td>Moped: <td><input name="barrier" type="radio" value="moped" onchange="displayData('barrier');">
-<tr><td>Motorcycle:<td><input name="barrier" type="radio" value="motorcycle" onchange="displayData('barrier');">
-<tr><td>Motorcar: <td><input name="barrier" type="radio" value="motorcar" onchange="displayData('barrier');" checked>
-<tr><td>Goods: <td><input name="barrier" type="radio" value="goods" onchange="displayData('barrier');">
-<tr><td>HGV: <td><input name="barrier" type="radio" value="hgv" onchange="displayData('barrier');">
-<tr><td>PSV: <td><input name="barrier" type="radio" value="psv" onchange="displayData('barrier');">
+<tr><td>Motorka:<td><input name="barrier" type="radio" value="motorcycle" onchange="displayData('barrier');">
+<tr><td>Motorové vozidlo: <td><input name="barrier" type="radio" value="motorcar" onchange="displayData('barrier');" checked>
+<tr><td>Nákladné vozidlo: <td><input name="barrier" type="radio" value="goods" onchange="displayData('barrier');">
+<tr><td>Ťažké nákladné auto: <td><input name="barrier" type="radio" value="hgv" onchange="displayData('barrier');">
+<tr><td>Verejná doprava: <td><input name="barrier" type="radio" value="psv" onchange="displayData('barrier');">
 </table>
 </form>
 </div>
@@ -388,12 +388,12 @@ along with the length limit on relevant segments.
 Each segment of the highways with a particular property is drawn.
 <form name="properties" id="properties" action="#" method="get" onsubmit="return false;">
 <table>
-<tr><td>Paved: <td><input name="property" type="radio" value="paved" onchange="displayData('property');" checked>
-<tr><td>Multiple Lanes: <td><input name="property" type="radio" value="multilane" onchange="displayData('property');">
-<tr><td>Bridge: <td><input name="property" type="radio" value="bridge" onchange="displayData('property');">
-<tr><td>Tunnel: <td><input name="property" type="radio" value="tunnel" onchange="displayData('property');">
-<tr><td>Walking Route: <td><input name="property" type="radio" value="footroute" onchange="displayData('property');">
-<tr><td>Bicycle Route: <td><input name="property" type="radio" value="bicycleroute" onchange="displayData('property');">
+<tr><td>Dláždená: <td><input name="property" type="radio" value="paved" onchange="displayData('property');" checked>
+<tr><td>Viac pruhov: <td><input name="property" type="radio" value="multilane" onchange="displayData('property');">
+<tr><td>Most: <td><input name="property" type="radio" value="bridge" onchange="displayData('property');">
+<tr><td>Tunel: <td><input name="property" type="radio" value="tunnel" onchange="displayData('property');">
+<tr><td>Pešia trasa: <td><input name="property" type="radio" value="footroute" onchange="displayData('property');">
+<tr><td>Cyklotrasa: <td><input name="property" type="radio" value="bicycleroute" onchange="displayData('property');">
 </table>
 </form>
 </div>
@@ -414,9 +414,9 @@ Potential problems found by Routino when processing the input data.
 
 <div class="hideshow_box">
 <span class="hideshow_title">Odkazy</span>
-<a id="permalink_url" href="visualiser.html">Link to this map view</a>
+<a id="permalink_url" href="visualiser.html">Odkaz na túto mapu</a>
 <br>
-<a id="edit_url" target="edit" style="display: none;">Edit this OSM data</a>
+<a id="edit_url" target="edit" style="display: none;">Upraviť tieto OSM dáta</a>
 </div>
 
 <div class="hideshow_box">
@@ -448,7 +448,7 @@ again.
 <span class="hideshow_title">Routino Router</span>
 To perform routing on the map use the link below.
 <br>
-<a id="router_url" href="router.html" target="router">Link to this map view</a>
+<a id="router_url" href="router.html" target="router">Odkaz na túto mapu</a>
 </div>
 </div>
 
@@ -456,7 +456,7 @@ To perform routing on the map use the link below.
 <div class="hideshow_box">
 <span class="hideshow_title">Routino štatistiky</span>
 <div id="statistics_data"></div>
-<a id="statistics_link" href="statistics.cgi" onclick="displayStatistics();return(false);">Display data statistics</a>
+<a id="statistics_link" href="statistics.cgi" onclick="displayStatistics();return(false);">Zobraz štatistiky</a>
 </div>
 </div>
 
@@ -468,7 +468,7 @@ To perform routing on the map use the link below.
 <div class="map" id="map">
 <noscript>
 <p>
-Javascript is <em>required</em> to use this web page because of the interactive map.
+Je <em>potrebné</em> zapnúť Javascript na prezeranie tejto webovej stránky pre potreby interaktívnej mapy.
 </noscript>
 </div>
 <div class="attribution">

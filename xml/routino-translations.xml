@@ -1077,12 +1077,12 @@
     <highway type="primary"      string="ceste I. triedy" />
     <highway type="secondary"    string="ceste II. triedy" />
     <highway type="tertiary"     string="ceste III. triedy" />
-    <highway type="unclassified" string="neklasifikovanej ceste" />
+    <highway type="unclassified" string="neoznačenej ceste" />
     <highway type="residential"  string="miestnej komunikácii" />
     <highway type="service"      string="účelovej komunikácii" />
     <highway type="track"        string="ceste" />
     <highway type="cycleway"     string="cykloceste" />
-    <highway type="path"         string="ceste" />
+    <highway type="path"         string="chodníku" />
     <highway type="steps"        string="schodoch" />
     <highway type="ferry"        string="prievoze" />
 
