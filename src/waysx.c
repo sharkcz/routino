@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2008-2015, 2018, 2019, 2020 Andrew M. Bishop
+ This file Copyright 2008-2015, 2018, 2019, 2020, 2022 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -198,7 +198,16 @@ void AppendWayList(WaysX *waysx,way_t id,Way *way,node_t *nodes,int nnodes,const
 
  longsize=sizeof(WayX)+(nnodes+1)*sizeof(node_t)+strlen(name)+1;
 
- logassert(longsize<FILESORT_MAXINT,"Way contains too much data (change FILESORT_VARINT to 32-bits?)"); /* Ensure no overflow of FILESORT_VARINT integer */
+ if(longsize>=FILESORT_MAXINT) /* Ensure no overflow of FILESORT_VARINT integer */
+   {
+    logerror("Way %"Pway_t" contains too much data; ignoring some nodes (or change FILESORT_VARINT to 32-bits?)\n",logerror_way(id));
+
+    nnodes=(FILESORT_MAXINT-(sizeof(WayX)+strlen(name)+1))/sizeof(node_t)-1;
+
+    longsize=sizeof(WayX)+(nnodes+1)*sizeof(node_t)+strlen(name)+1;
+
+    logassert(longsize<FILESORT_MAXINT,"Way still contains too much data (change FILESORT_VARINT to 32-bits?)\n");
+   }
 
  size=longsize;
 

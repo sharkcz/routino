@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2010-2015, 2018, 2019, 2020 Andrew M. Bishop
+ This file Copyright 2010-2015, 2018, 2019, 2020, 2022 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -237,7 +237,16 @@ void AppendRouteRelationList(RelationsX* relationsx,relation_t id,
 
  longsize=sizeof(RouteRelX)+1*sizeof(node_t)+(nways+1)*sizeof(way_t)+(nrelations+1)*sizeof(relation_t);
 
- logassert(longsize<FILESORT_MAXINT,"Route relation contains too much data (change FILESORT_VARINT to 32-bits?)"); /* Ensure no overflow of FILESORT_VARINT integer */
+ if(longsize>=FILESORT_MAXINT) /* Ensure no overflow of FILESORT_VARINT integer */
+   {
+    logerror("Route Relation %"Prelation_t" contains too much data; ignoring some ways (or change FILESORT_VARINT to 32-bits?)\n",logerror_relation(id));
+
+    nways=(FILESORT_MAXINT-(sizeof(RouteRelX)+1*sizeof(node_t)+(nrelations+1)*sizeof(relation_t)))/sizeof(way_t)-1;
+
+    longsize=sizeof(RouteRelX)+1*sizeof(node_t)+(nways+1)*sizeof(way_t)+(nrelations+1)*sizeof(relation_t);
+
+    logassert(longsize<FILESORT_MAXINT,"Route relation still contains too much data (change FILESORT_VARINT to 32-bits?)"); /* Ensure no overflow of FILESORT_VARINT integer */
+   }
 
  size=longsize;
 
