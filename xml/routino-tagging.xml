@@ -5,7 +5,7 @@
 
      Part of the Routino routing software.
      ============================================================
-     This file Copyright 2010-2015, 2018, 2019, 2020 Andrew M. Bishop
+     This file Copyright 2010-2015, 2018, 2019, 2020, 2021 Andrew M. Bishop
 
      This program is free software: you can redistribute it and/or modify
      it under the terms of the GNU Affero General Public License as published by
@@ -40,33 +40,32 @@
 
       <!-- Barrier types -->
 
-      <if k="barrier" v="kissing_gate">
-        <set v="foot_only"/>
+      <if k="barrier" v="wall">  <set v="no_access"/> </if>
+      <if k="barrier" v="fence"> <set v="no_access"/> </if>
+      <if k="barrier" v="hedge"> <set v="no_access"/> </if>
+
+      <if k="barrier" v="no_access">
+        <output k="foot"       v="no"/>
+        <output k="horse"      v="no"/>
+        <output k="wheelchair" v="no"/>
+        <output k="bicycle"    v="no"/>
+        <output k="moped"      v="no"/>
+        <output k="motorcycle" v="no"/>
+        <output k="motorcar"   v="no"/>
+        <output k="goods"      v="no"/>
+        <output k="hgv"        v="no"/>
+        <output k="psv"        v="no"/>
+
+        <unset k="barrier"/>
       </if>
 
-      <if k="barrier" v="footgate">
-        <set v="foot_only"/>
-      </if>
-
-      <if k="barrier" v="stile">
-        <set v="foot_only"/>
-      </if>
-
-      <if k="barrier" v="v_stile">
-        <set v="foot_only"/>
-      </if>
-
-      <if k="barrier" v="turnstile">
-        <set v="foot_only"/>
-      </if>
-
-      <if k="barrier" v="squeeze">
-        <set v="foot_only"/>
-      </if>
-
-      <if k="barrier" v="squeeze_stile">
-        <set v="foot_only"/>
-      </if>
+      <if k="barrier" v="kissing_gate">  <set v="foot_only"/> </if>
+      <if k="barrier" v="footgate">      <set v="foot_only"/> </if>
+      <if k="barrier" v="stile">         <set v="foot_only"/> </if>
+      <if k="barrier" v="v_stile">       <set v="foot_only"/> </if>
+      <if k="barrier" v="turnstile">     <set v="foot_only"/> </if>
+      <if k="barrier" v="squeeze">       <set v="foot_only"/> </if>
+      <if k="barrier" v="squeeze_stile"> <set v="foot_only"/> </if>
 
       <if k="barrier" v="foot_only">
         <output k="horse"      v="no"/>
@@ -82,17 +81,13 @@
         <unset k="barrier"/>
       </if>
 
-      <if k="barrier" v="horse_stile">
-        <set v="not_wheeled"/>
-      </if>
-
-      <if k="barrier" v="horse_jump">
-        <set v="not_wheeled"/>
-      </if>
-
-      <if k="barrier" v="step_over">
-        <set v="not_wheeled"/>
-      </if>
+      <if k="barrier" v="horse_stile"> <set v="not_wheeled"/> </if>
+      <if k="barrier" v="horse_jump">  <set v="not_wheeled"/> </if>
+      <if k="barrier" v="step_over">   <set v="not_wheeled"/> </if>
+      <if k="barrier" v="chain">       <set v="not_wheeled"/> </if>
+      <if k="barrier" v="log">         <set v="not_wheeled"/> </if>
+      <if k="barrier" v="tree">        <set v="not_wheeled"/> </if>
+      <if k="barrier" v="fallen_tree"> <set v="not_wheeled"/> </if>
 
       <if k="barrier" v="not_wheeled">
         <output k="wheelchair" v="no"/>
@@ -107,13 +102,8 @@
         <unset k="barrier"/>
       </if>
 
-      <if k="barrier" v="horse_barrier">
-        <set v="no_horse"/>
-      </if>
-
-      <if k="barrier" v="cattle_grid">
-        <set v="no_horse"/>
-      </if>
+      <if k="barrier" v="horse_barrier"> <set v="no_horse"/> </if>
+      <if k="barrier" v="cattle_grid">   <set v="no_horse"/> </if>
 
       <if k="barrier" v="no_horse">
         <output k="horse"      v="no"/>
@@ -141,21 +131,10 @@
         <unset k="barrier"/>
       </if>
 
-      <if k="barrier" v="bollard">
-        <set v="not_2plus_wheels"/>
-      </if>
-
-      <if k="barrier" v="post">
-        <set v="not_2plus_wheels"/>
-      </if>
-
-      <if k="barrier" v="car_barrier">
-        <set v="not_2plus_wheels"/>
-      </if>
-
-      <if k="barrier" v="car_trap">
-        <set v="not_2plus_wheels"/>
-      </if>
+      <if k="barrier" v="bollard">     <set v="not_2plus_wheels"/> </if>
+      <if k="barrier" v="post">        <set v="not_2plus_wheels"/> </if>
+      <if k="barrier" v="car_barrier"> <set v="not_2plus_wheels"/> </if>
+      <if k="barrier" v="car_trap">    <set v="not_2plus_wheels"/> </if>
 
       <if k="barrier" v="not_2plus_wheels">
         <output k="motorcar"   v="no"/>
