@@ -6,7 +6,7 @@
 <meta name="keywords" content="openstreetmap routino verifier">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
 
-<title>Routino : Data Visualiser for Routing Data</title>
+<title>Routino : Vizualizér údajov pre smerovanie údajov</title>
 
 <!--
 Routino data visualiser web page.
@@ -63,8 +63,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
 
 <div class="hideshow_box">
 <span class="hideshow_title">Routino vizualizér</span>
-This web page allows visualisation of the data that Routino uses for routing.
-Only data relevant for routing is displayed and some will therefore be excluded.
+Táto webová stránka umožňuje vizualizáciu údajov, ktoré Routino používa na smerovanie.
+Zobrazujú sa iba tie údaje, ktoré sú relevantné pre smerovanie a preto niektoré údaje sú vylúčené.
 <div class="center">
 <a target="other" href="http://www.routino.org/">Webová stránka Routino</a>
 |
@@ -122,50 +122,49 @@ Only data relevant for routing is displayed and some will therefore be excluded.
 
 <div class="hideshow_box">
 <span class="hideshow_title">Inštrukcie</span>
-Zoom in and then use the buttons below to download the data. The
-server will only return data if the selected area is small enough.
+Priblížte a potom pomocou tlačidiel nižšie stiahnite údaje. Server vráti údaje iba vtedy, ak je označená oblasť dostatočne malá.
 </div>
 
 <div class="hideshow_box">
 <span class="hideshow_title">Stav</span>
 <div id="result_status">
 <div id="result_status_no_data">
-<b><i>No data displayed</i></b>
+<b><i>Nezobrazujú sa žiadne dáta</i></b>
 </div>
 <div id="result_status_data" style="display: none;">
 </div>
 <div id="result_status_failed" style="display: none;">
-<b>Failed to get visualiser data!</b>
+<b>Nepodarilo sa získať údaje vizualizéra!</b>
 </div>
 <div id="result_status_junctions" style="display: none;">
-<b>Processed # junctions</b>
+<b>Spracované # križovatky</b>
 </div>
 <div id="result_status_super" style="display: none;">
-<b>Processed # super-nodes/segments</b>
+<b>Spracované # superuzly/segmenty</b>
 </div>
 <div id="result_status_waytype" style="display: none;">
-<b>Processed # way type segments</b>
+<b>Spracované # cestné segmenty</b>
 </div>
 <div id="result_status_highway" style="display: none;">
-<b>Processed # segments</b>
+<b>Spracované # segmenty</b>
 </div>
 <div id="result_status_transport" style="display: none;">
-<b>Processed # segments</b>
+<b>Spracované # segmenty</b>
 </div>
 <div id="result_status_barrier" style="display: none;">
-<b>Processed # nodes</b>
+<b>Spracované # uzly</b>
 </div>
 <div id="result_status_turns" style="display: none;">
-<b>Processed # turn restrictions</b>
+<b>Spracované # obmedzenia odbočení</b>
 </div>
 <div id="result_status_limit" style="display: none;">
-<b>Processed # limit changes</b>
+<b>Spracované # zmeny rýchlostných obmedzení</b>
 </div>
 <div id="result_status_property" style="display: none;">
-<b>Processed # segments</b>
+<b>Spracované # segmenty</b>
 </div>
 <div id="result_status_errorlogs" style="display: none;">
-<b>Processed # error logs</b>
+<b>Spracované # chyby</b>
 </div>
 </div>
 </div>
@@ -173,20 +172,18 @@ server will only return data if the selected area is small enough.
 <div class="hideshow_box">
 <span id="hideshow_junctions_show" onclick="hideshow_show('junctions');" class="hideshow_show">+</span>
 <span id="hideshow_junctions_hide" onclick="hideshow_hide('junctions');" class="hideshow_hide">-</span>
-<input type="button" id="junctions" onclick="displayData('junctions');" value="Display Junctions">
+<input type="button" id="junctions" onclick="displayData('junctions');" value="Zobraz križovatky">
 <div id="hideshow_junctions_div" style="display: none;">
-Each node that is a dead-end, a junction of two highways of different
-types (or different properties) or a junction where more than two segments
-join are shown colour-coded.
+Každý uzol, ktorý je slepou uličkou, križovatkou dvoch typov rôznych ciest (alebo rôznych vlastností), alebo križovatka, kde sa stretávajú viac ako dva segmenty, sú zobrazené farebne.
 <br>
 <table>
-<tr><td><img src="icons/ball-1.png" alt="1" ><td>only one highway - a dead-end.
-<tr><td><img src="icons/ball-2.png" alt="2" ><td>two highways of different types meet.
-<tr><td><img src="icons/ball-3.png" alt="3" ><td>three highways meet.
-<tr><td><img src="icons/ball-4.png" alt="4" ><td>four highways meet.
-<tr><td><img src="icons/ball-5.png" alt="5" ><td>five highways meet.
-<tr><td><img src="icons/ball-6.png" alt="6" ><td>six highways meet.
-<tr><td><img src="icons/ball-7.png" alt="7+"><td>seven (or more) highways meet.
+<tr><td><img src="icons/ball-1.png" alt="1" ><td>len jedna cesta - slepá ulička.
+<tr><td><img src="icons/ball-2.png" alt="2" ><td>stret dvoch rôznych typov ciest.
+<tr><td><img src="icons/ball-3.png" alt="3" ><td>stret troch ciest.
+<tr><td><img src="icons/ball-4.png" alt="4" ><td>stret štyroch ciest.
+<tr><td><img src="icons/ball-5.png" alt="5" ><td>stret piatich ciest.
+<tr><td><img src="icons/ball-6.png" alt="6" ><td>stret šiestich ciest.
+<tr><td><img src="icons/ball-7.png" alt="7+"><td>stret siedmych (alebo viac) ciest.
 </table>
 </div>
 </div>
@@ -194,26 +191,25 @@ join are shown colour-coded.
 <div class="hideshow_box">
 <span id="hideshow_super_show" onclick="hideshow_show('super');" class="hideshow_show">+</span>
 <span id="hideshow_super_hide" onclick="hideshow_hide('super');" class="hideshow_hide">-</span>
-<input type="button" id="super" onclick="displayData('super');" value="Display Super Segments">
+<input type="button" id="super" onclick="displayData('super');" value="Zobraz Supersegmenty">
 <div id="hideshow_super_div" style="display: none;">
-Each super-node and the associated super-segments are shown (see
-algorithm page for description).
+Zobrazuje sa každý superuzol a súvisiace supersegmenty (pozri
+stránku algoritmu pre podrobnejší popis).
 </div>
 </div>
 
 <div class="hideshow_box">
 <span id="hideshow_waytype_show" onclick="hideshow_show('waytype');" class="hideshow_show">+</span>
 <span id="hideshow_waytype_hide" onclick="hideshow_hide('waytype');" class="hideshow_hide">-</span>
-<input type="button" id="waytype" onclick="displayData('waytype');" value="Display Way Type Segments">
+<input type="button" id="waytype" onclick="displayData('waytype');" value="Zobraz cestné typy segmentov">
 <div id="hideshow_waytype_div" style="display: none;">
-Each highway segment of special types (one-way, cycle-both-ways and roundabout) are
-shown. For one-way segments a coloured triangle indicates the allowed direction.
-The colours of the triangles depend on the bearing of the highway segment.
+Zobrazujeme každý diaľničný úsek špeciálneho typu (jednosmerný, obojsmerný pre cyklistov a kruhový objazd). Pre jednosmerné segmenty, farebný trojuholník označuje povolený smer.
+Farby trojuholníkov závisia od smeru cestného segmentu.
 <form name="waytypes" id="waytypes" action="#" method="get" onsubmit="return false;">
 <table>
-<tr><td>One-way segments: <td><input name="waytype" type="radio" value="oneway" onchange="displayData('waytype');" checked>
-<tr><td>Cycle-both-way segments:<td><input name="waytype" type="radio" value="cyclebothways" onchange="displayData('waytype');">
-<tr><td>Roundabout segments: <td><input name="waytype" type="radio" value="roundabout" onchange="displayData('waytype');">
+<tr><td>Jednosmerné segmenty: <td><input name="waytype" type="radio" value="oneway" onchange="displayData('waytype');" checked>
+<tr><td>Cyklistické obojsmerné segmenty:<td><input name="waytype" type="radio" value="cyclebothways" onchange="displayData('waytype');">
+<tr><td>Segmenty kruhových objazdov: <td><input name="waytype" type="radio" value="roundabout" onchange="displayData('waytype');">
 </table>
 </form>
 </div>
@@ -222,9 +218,9 @@ The colours of the triangles depend on the bearing of the highway segment.
 <div class="hideshow_box">
 <span id="hideshow_highway_show" onclick="hideshow_show('highway');" class="hideshow_show">+</span>
 <span id="hideshow_highway_hide" onclick="hideshow_hide('highway');" class="hideshow_hide">-</span>
-<input type="button" id="highway" onclick="displayData('highway');" value="Display Highway Segments">
+<input type="button" id="highway" onclick="displayData('highway');" value="Zobraz cestné segmenty">
 <div id="hideshow_highway_div" style="display: none;">
-Each segment of the chosen type of highway is drawn.
+Zakreslí sa každý segment zvoleného typu cesty.
 <form name="highways" id="highways" action="#" method="get" onsubmit="return false;">
 <table>
 <tr><td>Diaľnica: <td><input name="highway" type="radio" value="motorway" onchange="displayData('highway');">
@@ -248,9 +244,9 @@ Each segment of the chosen type of highway is drawn.
 <div class="hideshow_box">
 <span id="hideshow_transport_show" onclick="hideshow_show('transport');" class="hideshow_show">+</span>
 <span id="hideshow_transport_hide" onclick="hideshow_hide('transport');" class="hideshow_hide">-</span>
-<input type="button" id="transport" onclick="displayData('transport');" value="Display Transport Segments">
+<input type="button" id="transport" onclick="displayData('transport');" value="Zobraziť dopravné segmenty">
 <div id="hideshow_transport_div" style="display: none;">
-Each segment allowed for the chosen type of transport is drawn.
+Vykreslí sa každý povolený segment pre zvolený typ dopravy.
 <form name="transports" id="transports" action="#" method="get" onsubmit="return false;">
 <table>
 <tr><td>Pešo: <td><input name="transport" type="radio" value="foot" onchange="displayData('transport');">
@@ -271,9 +267,9 @@ Each segment allowed for the chosen type of transport is drawn.
 <div class="hideshow_box">
 <span id="hideshow_barrier_show" onclick="hideshow_show('barrier');" class="hideshow_show">+</span>
 <span id="hideshow_barrier_hide" onclick="hideshow_hide('barrier');" class="hideshow_hide">-</span>
-<input type="button" id="barrier" onclick="displayData('barrier');" value="Display Barrier Nodes">
+<input type="button" id="barrier" onclick="displayData('barrier');" value="Zobraziť uzly bariéry">
 <div id="hideshow_barrier_div" style="display: none;">
-Each barrier blocking the chosen type of transport is drawn.
+Vykreslí každú bariéru blokujúcu zvolený druh dopravy.
 <form name="barriers" id="barriers" action="#" method="get" onsubmit="return false;">
 <table>
 <tr><td>Pešo: <td><input name="barrier" type="radio" value="foot" onchange="displayData('barrier');">
@@ -294,24 +290,23 @@ Each barrier blocking the chosen type of transport is drawn.
 <div class="hideshow_box">
 <span id="hideshow_turns_show" onclick="hideshow_show('turns');" class="hideshow_show">+</span>
 <span id="hideshow_turns_hide" onclick="hideshow_hide('turns');" class="hideshow_hide">-</span>
-<input type="button" id="turns" onclick="displayData('turns');" value="Display Turn Restrictions">
+<input type="button" id="turns" onclick="displayData('turns');" value="Zobraz obmedzenia odbočenia">
 <div id="hideshow_turns_div" style="display: none;">
-Each turn restrictions is shown with a line indicating the disallowed turn.
+Každé obmedzenie odbočenia je znázornené čiarou označujúcou nepovolenú odbočku.
 </div>
 </div>
 
 <div class="hideshow_box">
 <span id="hideshow_speed_show" onclick="hideshow_show('speed');" class="hideshow_show">+</span>
 <span id="hideshow_speed_hide" onclick="hideshow_hide('speed');" class="hideshow_hide">-</span>
-<input type="button" id="speed" onclick="displayData('speed');" value="Display Speed Limits">
+<input type="button" id="speed" onclick="displayData('speed');" value="Zobraz rýchlostné obmedzenia">
 <div id="hideshow_speed_div" style="display: none;">
-Each node that joins segments with different speed limits is shown
-along with the speed limit on relevant segments.
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi rýchlostnými obmedzeniami spolu s rýchlostným obmedzením na príslušných úsekoch.
 <br>
 <table>
-<tr><td><img src="icons/ball-1.png" alt="." ><td>Change of limit
-<tr><td><img src="icons/limit-no.png" alt="()" ><td>No specified limit
-<tr><td><img src="icons/limit-80.png" alt="(80)"><td>80 km/hour speed limit
+<tr><td><img src="icons/ball-1.png" alt="." ><td>Zmena rýchlostného obmedzenia
+<tr><td><img src="icons/limit-no.png" alt="()" ><td>Nešpecifikované rýchlostné obmedzenie
+<tr><td><img src="icons/limit-80.png" alt="(80)"><td>Rýchlostné obmedzenie na 80 km/h
 </table>
 </div>
 </div>
@@ -319,15 +314,14 @@ along with the speed limit on relevant segments.
 <div class="hideshow_box">
 <span id="hideshow_weight_show" onclick="hideshow_show('weight');" class="hideshow_show">+</span>
 <span id="hideshow_weight_hide" onclick="hideshow_hide('weight');" class="hideshow_hide">-</span>
-<input type="button" id="weight" onclick="displayData('weight');" value="Display Weight Limits">
+<input type="button" id="weight" onclick="displayData('weight');" value="Zobraz hmotnostné obmedzenia">
 <div id="hideshow_weight_div" style="display: none;">
-Each node that joins segments with different weight limits is shown
-along with the weight limit on relevant segments.
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi hmotnostnými obmedzeniami spolu s hmotnostným obmedzením pre príslušné segmenty.
 <br>
 <table>
-<tr><td><img src="icons/ball-1.png" alt="." ><td>Change of limit
-<tr><td><img src="icons/limit-no.png" alt="()" ><td>No specified limit
-<tr><td><img src="icons/limit-8.0.png" alt="(8.0)"><td>8.0 tonnes weight limit
+<tr><td><img src="icons/ball-1.png" alt="." ><td>Zmena rýchlostného obmedzenia
+<tr><td><img src="icons/limit-no.png" alt="()" ><td>Nešpecifikované rýchlostné obmedzenie
+<tr><td><img src="icons/limit-8.0.png" alt="(8.0)"><td>Hmotnostné obmedzenia do 8 ton.
 </table>
 </div>
 </div>
@@ -335,15 +329,14 @@ along with the weight limit on relevant segments.
 <div class="hideshow_box">
 <span id="hideshow_height_show" onclick="hideshow_show('height');" class="hideshow_show">+</span>
 <span id="hideshow_height_hide" onclick="hideshow_hide('height');" class="hideshow_hide">-</span>
-<input type="button" id="height" onclick="displayData('height');" value="Display Height Limits">
+<input type="button" id="height" onclick="displayData('height');" value="Zobrazenie výškových obmedzení">
 <div id="hideshow_height_div" style="display: none;">
-Each node that joins segments with different height limits is shown
-along with the height limit on relevant segments.
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi výškovými obmedzeniami spolu s výškovým obmedzením pre príslušné segmenty.
 <br>
 <table>
-<tr><td><img src="icons/ball-1.png" alt="." ><td>Change of limit
-<tr><td><img src="icons/limit-no.png" alt="()" ><td>No specified limit
-<tr><td><img src="icons/limit-4.0.png" alt="(4.0)"><td>4.0 m height limit
+<tr><td><img src="icons/ball-1.png" alt="." ><td>Zmena rýchlostného obmedzenia
+<tr><td><img src="icons/limit-no.png" alt="()" ><td>Nešpecifikované rýchlostné obmedzenie
+<tr><td><img src="icons/limit-4.0.png" alt="(4.0)"><td>Obmedzenie výšky do 4.0 m.
 </table>
 </div>
 </div>
@@ -351,15 +344,14 @@ along with the height limit on relevant segments.
 <div class="hideshow_box">
 <span id="hideshow_width_show" onclick="hideshow_show('width');" class="hideshow_show">+</span>
 <span id="hideshow_width_hide" onclick="hideshow_hide('width');" class="hideshow_hide">-</span>
-<input type="button" id="width" onclick="displayData('width');" value="Display Width Limits">
+<input type="button" id="width" onclick="displayData('width');" value="Zobrazenie obmedzení šírky">
 <div id="hideshow_width_div" style="display: none;">
-Each node that joins segments with different width limits is shown
-along with the width limit on relevant segments.
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi šírkovými obmedzeniami spolu so šírkovým obmedzením pre príslušné segmenty.
 <br>
 <table>
-<tr><td><img src="icons/ball-1.png" alt="." ><td>Change of limit
-<tr><td><img src="icons/limit-no.png" alt="()" ><td>No specified limit
-<tr><td><img src="icons/limit-3.0.png" alt="(3.0)"><td>3.0 m width limit
+<tr><td><img src="icons/ball-1.png" alt="." ><td>Zmena rýchlostného obmedzenia
+<tr><td><img src="icons/limit-no.png" alt="()" ><td>Nešpecifikované rýchlostné obmedzenie
+<tr><td><img src="icons/limit-3.0.png" alt="(3.0)"><td>Obmedzenie šírky do 3.0 m.
 </table>
 </div>
 </div>
@@ -367,15 +359,14 @@ along with the width limit on relevant segments.
 <div class="hideshow_box">
 <span id="hideshow_length_show" onclick="hideshow_show('length');" class="hideshow_show">+</span>
 <span id="hideshow_length_hide" onclick="hideshow_hide('length');" class="hideshow_hide">-</span>
-<input type="button" id="length" onclick="displayData('length');" value="Display Length Limits">
+<input type="button" id="length" onclick="displayData('length');" value="Zobrazenie obmedzení dĺžky">
 <div id="hideshow_length_div" style="display: none;">
-Each node that joins segments with different length limits is shown
-along with the length limit on relevant segments.
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi obmedzeniami dĺžky spolu s obmedzením dĺžky pre príslušné segmenty.
 <br>
 <table>
-<tr><td><img src="icons/ball-1.png" alt="." ><td>Change of limit
-<tr><td><img src="icons/limit-no.png" alt="()" ><td>No specified limit
-<tr><td><img src="icons/limit-9.0.png" alt="(9.0)"><td>9.0 m length limit
+<tr><td><img src="icons/ball-1.png" alt="." ><td>Zmena rýchlostného obmedzenia
+<tr><td><img src="icons/limit-no.png" alt="()" ><td>Nešpecifikované rýchlostné obmedzenie
+<tr><td><img src="icons/limit-9.0.png" alt="(9.0)"><td>Obmedzenie dlžky do 9.0 m.
 </table>
 </div>
 </div>
@@ -383,9 +374,9 @@ along with the length limit on relevant segments.
 <div class="hideshow_box">
 <span id="hideshow_property_show" onclick="hideshow_show('property');" class="hideshow_show">+</span>
 <span id="hideshow_property_hide" onclick="hideshow_hide('property');" class="hideshow_hide">-</span>
-<input type="button" id="property" onclick="displayData('property');" value="Display Highway Properties">
+<input type="button" id="property" onclick="displayData('property');" value="Zobraz vlastnosti cesty">
 <div id="hideshow_property_div" style="display: none;">
-Each segment of the highways with a particular property is drawn.
+Je vykreslený každý segment ciest s konkrétnou vlastnosťou.
 <form name="properties" id="properties" action="#" method="get" onsubmit="return false;">
 <table>
 <tr><td>Dláždená: <td><input name="property" type="radio" value="paved" onchange="displayData('property');" checked>
@@ -402,14 +393,14 @@ Each segment of the highways with a particular property is drawn.
 <div class="hideshow_box">
 <span id="hideshow_errorlogs_show" onclick="hideshow_show('errorlogs');" class="hideshow_show">+</span>
 <span id="hideshow_errorlogs_hide" onclick="hideshow_hide('errorlogs');" class="hideshow_hide">-</span>
-<input type="button" id="errorlogs" onclick="displayData('errorlogs');" value="Display Error Logs">
+<input type="button" id="errorlogs" onclick="displayData('errorlogs');" value="Zobraz chyby">
 <div id="hideshow_errorlogs_div" style="display: none;">
-Potential problems found by Routino when processing the input data.
+Potenciálne problémy nájdené Routinom pri spracovaní vstupných údajov.
 </div>
 </div>
 
 <div class="hideshow_box">
-<input type="button" id="clear" onclick="displayData('');" value="Clear data">
+<input type="button" id="clear" onclick="displayData('');" value="Vymaž údaje">
 </div>
 
 <div class="hideshow_box">
@@ -425,19 +416,17 @@ Potential problems found by Routino when processing the input data.
 <span class="hideshow_title">Pomoc</span>
 <div id="hideshow_help_options_div">
 <div class="scrollable">
-<b>Quick Start</b>
+<b>Stručný návod</b>
 <br>
-Zoom to an area and select one of the buttons to display that type of
-data.
+Priblížte sa do oblasti a vyberte jedno z tlačidiel na zobrazenie daného typu
+údajov.
 <br>
-More data options can be found by expanding the details below each
-button.
+Ďalšie možnosti údajov nájdete po rozbalení podrobností pod každým tlačidlom.
 <p>
-<b>Data Failure</b>
+<b>Zlyhanie údajov</b>
 <br>
-If the area selected is too large (depends on the data type) then the
-status will say "Failed to get visualiser data" - zoom in and try
-again.
+Ak je vybratá oblasť príliš veľká (závisí od typu údajov), výsledný stav bude "Nepodarilo sa získať údaje vizualizéra" - priblížte sa viac a skúste
+znova.
 </div>
 </div>
 </div>
@@ -445,8 +434,8 @@ again.
 
 <div class="tab_content" id="tab_router_div" style="display: none;">
 <div class="hideshow_box">
-<span class="hideshow_title">Routino Router</span>
-To perform routing on the map use the link below.
+<span class="hideshow_title">Routino smerovač</span>
+Ak chcete vykonať trasovanie na mape, použite odkaz nižšie.
 <br>
 <a id="router_url" href="router.html" target="router">Odkaz na túto mapu</a>
 </div>
@@ -472,11 +461,11 @@ Je <em>potrebné</em> zapnúť Javascript na prezeranie tejto webovej stránky p
 </noscript>
 </div>
 <div class="attribution">
-Router: <a href="http://www.routino.org/" target="routino">Routino</a>
+Smerovač: <a href="http://www.routino.org/" target="routino">Routino</a>
 |
-Geo Data: <span id="attribution_data"></span>
+Geo dáta: <span id="attribution_data"></span>
 |
-Tiles: <span id="attribution_tile"></span>
+Dlaždice: <span id="attribution_tile"></span>
 </div>
 </div>
 

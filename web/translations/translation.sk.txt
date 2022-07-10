@@ -191,24 +191,178 @@
 @@VIEW-DETAILS@@	Zobraziť detaily
 
 @@NO-INFORMATION@@	Žiadne informácie
+@@HTML-ROUTE@@	HTML trasa
+@@GPX-TRACK-ROUTE@@	GPX súbor s bodmi
+@@GPX-ROUTE@@	GPX súbor s trasou
+@@FULL-TEXT-ROUTE@@	Podrobný textový súbor
 @@TEXT-ROUTE@@	Textový súbor
 @@OPEN-POPUP@@	Otvor popup
 
 @@DISPLAY-STATISTICS@@	Zobraz štatistiky
 
 @@JAVASCRIPT-REQUIRED@@	Je <em>potrebné</em> zapnúť Javascript na prezeranie tejto webovej stránky pre potreby interaktívnej mapy.
+@@ROUTER@@	Smerovač
+@@GEO-DATA@@	Geo dáta
+@@TILES@@	Dlaždice
 
 #
 # Visualiser specific translations
 #
 
+@@VISUALISER-TITLE@@	Vizualizér údajov pre smerovanie údajov
+
 @@INSTRUCTIONS-BOX@@	Inštrukcie
+@@ROUTER-BOX@@	Routino smerovač
+
+@@NO-DATA-DISPLAYED@@	Nezobrazujú sa žiadne dáta
+
+@@VISUALISER-FAILED@@	Nepodarilo sa získať údaje vizualizéra!
+@@VISUALISER-NUM-JUNCTIONS@@	Spracované # križovatky
+@@VISUALISER-NUM-SUPER@@	Spracované # superuzly/segmenty
+@@VISUALISER-NUM-WAYTYPE@@	Spracované # cestné segmenty
+@@VISUALISER-NUM-SEGMENTS@@	Spracované # segmenty
+@@VISUALISER-NUM-NODES@@	Spracované # uzly
+@@VISUALISER-NUM-TURNS@@	Spracované # obmedzenia odbočení
+@@VISUALISER-NUM-LIMITS@@	Spracované # zmeny rýchlostných obmedzení
+@@VISUALISER-NUM-ERRORS@@	Spracované # chyby
+
+@@JUNCTIONS-BUTTON@@	Zobraz križovatky
+$$JUNCTIONS-INFO$$
+Každý uzol, ktorý je slepou uličkou, križovatkou dvoch typov rôznych ciest (alebo rôznych vlastností), alebo križovatka, kde sa stretávajú viac ako dva segmenty, sú zobrazené farebne.
+$$JUNCTIONS-INFO$$
+@@JUNCTIONS-1@@	len jedna cesta - slepá ulička.
+@@JUNCTIONS-2@@	stret dvoch rôznych typov ciest.
+@@JUNCTIONS-3@@	stret troch ciest.
+@@JUNCTIONS-4@@	stret štyroch ciest.
+@@JUNCTIONS-5@@	stret piatich ciest.
+@@JUNCTIONS-6@@	stret šiestich ciest.
+@@JUNCTIONS-MORE@@	stret siedmych (alebo viac) ciest.
+
+@@SUPER-BUTTON@@	Zobraz Supersegmenty
+$$SUPER-INFO$$
+Zobrazuje sa každý superuzol a súvisiace supersegmenty (pozri
+stránku algoritmu pre podrobnejší popis).
+$$SUPER-INFO$$
+
+@@WAYTYPE-BUTTON@@	Zobraz cestné typy segmentov
+$$WAYTYPE-INFO$$
+Zobrazujeme každý diaľničný úsek špeciálneho typu (jednosmerný, obojsmerný pre cyklistov a kruhový objazd). Pre jednosmerné segmenty, farebný trojuholník označuje povolený smer.
+Farby trojuholníkov závisia od smeru cestného segmentu.
+$$WAYTYPE-INFO$$
+
+@@WAYTYPE-ONEWAY@@	Jednosmerné segmenty
+@@WAYTYPE-CYCLE-BOTH-WAYS@@	Cyklistické obojsmerné segmenty
+@@WAYTYPE-ROUNDABOUT@@	Segmenty kruhových objazdov
+
+@@HIGHWAY-BUTTON@@	Zobraz cestné segmenty
+$$HIGHWAY-INFO$$
+Zakreslí sa každý segment zvoleného typu cesty.
+$$HIGHWAY-INFO$$
+
+@@TRANSPORT-BUTTON@@	Zobraziť dopravné segmenty
+$$TRANSPORT-INFO$$
+Vykreslí sa každý povolený segment pre zvolený typ dopravy.
+$$TRANSPORT-INFO$$
+
+@@BARRIER-BUTTON@@	Zobraziť uzly bariéry
+$$BARRIER-INFO$$
+Vykreslí každú bariéru blokujúcu zvolený druh dopravy.
+$$BARRIER-INFO$$
+
+@@TURNS-BUTTON@@	Zobraz obmedzenia odbočenia
+$$TURNS-INFO$$
+Každé obmedzenie odbočenia je znázornené čiarou označujúcou nepovolenú odbočku.
+$$TURNS-INFO$$
+
+@@SPEED-BUTTON@@	Zobraz rýchlostné obmedzenia
+$$SPEED-INFO$$
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi rýchlostnými obmedzeniami spolu s rýchlostným obmedzením na príslušných úsekoch.
+$$SPEED-INFO$$
+
+@@LIMIT-CHANGE@@	Zmena rýchlostného obmedzenia
+@@LIMIT-NONE@@	Nešpecifikované rýchlostné obmedzenie
+@@SPEED-LIMIT-80@@	Rýchlostné obmedzenie na 80 km/h
+
+@@WEIGHT-BUTTON@@	Zobraz hmotnostné obmedzenia
+$$WEIGHT-INFO$$
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi hmotnostnými obmedzeniami spolu s hmotnostným obmedzením pre príslušné segmenty.
+$$WEIGHT-INFO$$
+
+@@WEIGHT-LIMIT-8@@	Hmotnostné obmedzenia do 8 ton.
+
+@@HEIGHT-BUTTON@@	Zobrazenie výškových obmedzení
+$$HEIGHT-INFO$$
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi výškovými obmedzeniami spolu s výškovým obmedzením pre príslušné segmenty.
+$$HEIGHT-INFO$$
+
+@@HEIGHT-LIMIT-4@@	Obmedzenie výšky do 4.0 m.
+
+@@WIDTH-BUTTON@@	Zobrazenie obmedzení šírky
+$$WIDTH-INFO$$
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi šírkovými obmedzeniami spolu so šírkovým obmedzením pre príslušné segmenty.
+$$WIDTH-INFO$$
+
+@@WIDTH-LIMIT-3@@	Obmedzenie šírky do 3.0 m.
+
+@@LENGTH-BUTTON@@	Zobrazenie obmedzení dĺžky
+$$LENGTH-INFO$$
+Je zobrazený každý uzol, ktorý spája segmenty s rôznymi obmedzeniami dĺžky spolu s obmedzením dĺžky pre príslušné segmenty.
+$$LENGTH-INFO$$
+
+@@LENGTH-LIMIT-9@@	Obmedzenie dlžky do 9.0 m.
+
+@@PROPERTY-BUTTON@@	Zobraz vlastnosti cesty
+$$PROPERTY-INFO$$
+Je vykreslený každý segment ciest s konkrétnou vlastnosťou.
+$$PROPERTY-INFO$$
+
+@@ERROR-LOG-BUTTON@@	Zobraz chyby
+$$ERROR-LOG-INFO$$
+Potenciálne problémy nájdené Routinom pri spracovaní vstupných údajov.
+$$ERROR-LOG-INFO$$
+
+@@CLEAR-DATA-BUTTON@@	Vymaž údaje
 
 #
 # Multi-line descriptive translations (router)
 #
 
+$$ROUTER-INFO$$
+Táto webová stránka umožňuje smerovanie v rámci údajov zhromaždených z OpenStreetMap.
+Vyberte počiatočný a koncový bod (kliknite na ikony značiek nižšie), vyberte preferencie trasy a dajte vyhľadať trasu.
+$$ROUTER-INFO$$
+
+$$ROUTER-VISUALISER-INFO$$
+Na zobrazenie Routino pohľadu na dáta, existuje vizualizér údajov, ktorý umožňuje zobrazenie údajov rôznymi spôsobmi.
+$$ROUTER-VISUALISER-INFO$$
+
 #
 # Multi-line descriptive translations (visualiser)
 #
 
+$$VISUALISER-INFO$$
+Táto webová stránka umožňuje vizualizáciu údajov, ktoré Routino používa na smerovanie.
+Zobrazujú sa iba tie údaje, ktoré sú relevantné pre smerovanie a preto niektoré údaje sú vylúčené.
+$$VISUALISER-INFO$$
+
+$$VISUALISER-INSTRUCTIONS$$
+Priblížte a potom pomocou tlačidiel nižšie stiahnite údaje. Server vráti údaje iba vtedy, ak je označená oblasť dostatočne malá.
+$$VISUALISER-INSTRUCTIONS$$
+
+$$VISUALISER-HELP$$
+<b>Stručný návod</b>
+<br>
+Priblížte sa do oblasti a vyberte jedno z tlačidiel na zobrazenie daného typu
+údajov.
+<br>
+Ďalšie možnosti údajov nájdete po rozbalení podrobností pod každým tlačidlom.
+<p>
+<b>Zlyhanie údajov</b>
+<br>
+Ak je vybratá oblasť príliš veľká (závisí od typu údajov), výsledný stav bude "Nepodarilo sa získať údaje vizualizéra" - priblížte sa viac a skúste
+znova.
+$$VISUALISER-HELP$$
+
+$$VISUALISER-ROUTER-INFO$$
+Ak chcete vykonať trasovanie na mape, použite odkaz nižšie.
+$$VISUALISER-ROUTER-INFO$$

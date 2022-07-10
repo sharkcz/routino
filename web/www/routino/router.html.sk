@@ -64,8 +64,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
 <form name="form" id="form" action="#" method="get" onsubmit="return false;">
 <div class="hideshow_box">
 <span class="hideshow_title">Routino OpenStreetMap Plánovač</span>
-This web page allows routing within the data collected by OpenStreetMap.
-Select start and end points (click on the marker icons below), select routing preferences then find a route.
+Táto webová stránka umožňuje smerovanie v rámci údajov zhromaždených z OpenStreetMap.
+Vyberte počiatočný a koncový bod (kliknite na ikony značiek nižšie), vyberte preferencie trasy a dajte vyhľadať trasu.
 <div class="center">
 <a target="other" href="http://www.routino.org/">Webová stránka Routino</a>
 |
@@ -403,10 +403,10 @@ one-way restrictions (e.g. if walking).
 <div id="hideshow_shortest_div" style="display: none;">
 <div id="shortest_links" style="display: none;">
 <table>
-<tr><td>HTML directions: <td><a id="shortest_html" target="shortest_html" href="#">Otvor popup</a>
-<tr><td>GPX track file: <td><a id="shortest_gpx_track" target="shortest_gpx_track" href="#">Otvor popup</a>
-<tr><td>GPX route file: <td><a id="shortest_gpx_route" target="shortest_gpx_route" href="#">Otvor popup</a>
-<tr><td>Full text file: <td><a id="shortest_text_all" target="shortest_text_all" href="#">Otvor popup</a>
+<tr><td>HTML trasa: <td><a id="shortest_html" target="shortest_html" href="#">Otvor popup</a>
+<tr><td>GPX súbor s bodmi: <td><a id="shortest_gpx_track" target="shortest_gpx_track" href="#">Otvor popup</a>
+<tr><td>GPX súbor s trasou: <td><a id="shortest_gpx_route" target="shortest_gpx_route" href="#">Otvor popup</a>
+<tr><td>Podrobný textový súbor: <td><a id="shortest_text_all" target="shortest_text_all" href="#">Otvor popup</a>
 <tr><td>Textový súbor: <td><a id="shortest_text" target="shortest_text" href="#">Otvor popup</a>
 </table>
 <hr>
@@ -430,10 +430,10 @@ one-way restrictions (e.g. if walking).
 <div id="hideshow_quickest_div" style="display: none;">
 <div id="quickest_links" style="display: none;">
 <table>
-<tr><td>HTML directions: <td><a id="quickest_html" target="quickest_html" href="#">Otvor popup</a>
-<tr><td>GPX track file: <td><a id="quickest_gpx_track" target="quickest_gpx_track" href="#">Otvor popup</a>
-<tr><td>GPX route file: <td><a id="quickest_gpx_route" target="quickest_gpx_route" href="#">Otvor popup</a>
-<tr><td>Full text file: <td><a id="quickest_text_all" target="quickest_text_all" href="#">Otvor popup</a>
+<tr><td>HTML trasa: <td><a id="quickest_html" target="quickest_html" href="#">Otvor popup</a>
+<tr><td>GPX súbor s bodmi: <td><a id="quickest_gpx_track" target="quickest_gpx_track" href="#">Otvor popup</a>
+<tr><td>GPX súbor s trasou: <td><a id="quickest_gpx_route" target="quickest_gpx_route" href="#">Otvor popup</a>
+<tr><td>Podrobný textový súbor: <td><a id="quickest_text_all" target="quickest_text_all" href="#">Otvor popup</a>
 <tr><td>Textový súbor: <td><a id="quickest_text" target="quickest_text" href="#">Otvor popup</a>
 </table>
 <hr>
@@ -496,8 +496,7 @@ route.
 
 <div class="hideshow_box">
 <span class="hideshow_title">Routino vizualizér</span>
-To see Routino's view of the data there is a data visualiser that allows
-displaying of the underlying data in various ways.
+Na zobrazenie Routino pohľadu na dáta, existuje vizualizér údajov, ktorý umožňuje zobrazenie údajov rôznymi spôsobmi.
 <br>
 <a id="visualiser_url" href="visualiser.html" target="visualiser">Odkaz na túto mapu</a>
 </div>
@@ -515,11 +514,11 @@ Je <em>potrebné</em> zapnúť Javascript na prezeranie tejto webovej stránky p
 </noscript>
 </div>
 <div class="attribution">
-Router: <a href="http://www.routino.org/" target="routino">Routino</a>
+Smerovač: <a href="http://www.routino.org/" target="routino">Routino</a>
 |
-Geo Data: <span id="attribution_data"></span>
+Geo dáta: <span id="attribution_data"></span>
 |
-Tiles: <span id="attribution_tile"></span>
+Dlaždice: <span id="attribution_tile"></span>
 </div>
 </div>
 
