@@ -163,7 +163,7 @@
 @@HIGHWAY-STEPS@@	Schody
 @@HIGHWAY-FERRY@@	Prievoz
 
-@@PROPERTY-PAVED@@	Dláždená
+@@PROPERTY-PAVED@@	Spevnená
 @@PROPERTY-MULTILANE@@	Viac pruhov
 @@PROPERTY-BRIDGE@@	Most
 @@PROPERTY-TUNNEL@@	Tunel
@@ -331,6 +331,74 @@ $$ROUTER-INFO$$
 Táto webová stránka umožňuje smerovanie v rámci údajov zhromaždených z OpenStreetMap.
 Vyberte počiatočný a koncový bod (kliknite na ikony značiek nižšie), vyberte preferencie trasy a dajte vyhľadať trasu.
 $$ROUTER-INFO$$
+
+$$ROUTER-OPTIONS-HELP$$
+<b>stručný návod</b>
+<br>
+Kliknite na ikony značiek (vyššie) a umiestnite ich na mapu (vpravo). Potom ich presuňte do správnej polohy. Priblíženie mapy pred umiestnením značiek je asi najjednoduchšie. Prípadne zadajte zemepisnú šírku a zemepisnú dĺžku do polí vyššie.
+<p>
+Vyberte typ dopravy, povolené typy ciest, rýchlostné obmedzenia, vlastnosti ciest a ďalšie obmedzenia z vyššie uvedených možností.
+Zvoľte "Najkratšia" alebo "Najrýchlejšia" trasa pre jej výpočet a zobrazenie na mape.
+<p>
+<b>Trasové body</b>
+<br>
+Kliknutím na ikony značiek prepnete ich zobrazenie na mape.
+Vypočítaná trasa prejde (čo najbližšie pre vybraný typ dopravy) každý z trasových bodov, ktoré majú
+značky na mape v uvedenom poradí.
+<p>
+<b>Typ dopravy</b>
+<br>
+Výber typu dopravy obmedzí zvolenú trasu na tie, na ktorých je to povolené a nastaví predvolené hodnoty pre ostatné parametre.
+<p>
+<b>Predvoľby ciest</b>
+<br>
+Preferencie ciest sa určujú na základe percent a výsledná trasa sa snaží dodržiavať zvolené preferencie.
+Napríklad, ak má "cesta I. triedy" hodnotu "110 %" a "cesta II. triedy" má hodnotu "100 %", trasa na ceste I. triedy môže byť až o 10 % dlhšia ako na ceste II. triedy a stále sa použije.
+<p>
+<b>Obmedzenia rýchlosti</b>
+<br>
+Zvolené rýchlostné limity pre rôzne typy ciest sa aplikujú, ak cesta nemá iný rýchlostný limit alebo je vyšší ako zadaný.
+<p>
+<b>Rozšírené nastavenia ciest</b>
+<br>
+Nastavenie vlastnosti sa vyberá v percentách a podľa toho sa vyberajú trasy, ktoré majú preferované atribúty.
+Napríklad, ak je "spevnená" cesta nastavená na "75 %", tak nespevnená cesta má automaticky preferenciu "25%", takže trasa na spevnenej ceste môže byť 3x dlhšia ako nespevnená a stále bude
+vybraná.
+<p>
+<b>Iné obmedzenia</b>
+<br>
+Tieto obmedzenia umožňujú nájsť trasu, ktorá sa vyhýba vyznačeným obmedzeniam na
+hmotnosť, výšku, šírku alebo dĺžku. Je tiež možné ignorovať jednosmerné obmedzenia (napríklad pri chôdzi).
+$$ROUTER-OPTIONS-HELP$$
+
+$$ROUTER-RESULTS-HELP$$
+<b>Stručný návod</b>
+<br>
+Po vypočítaní trasy si môžete stiahnuť GPX súbor alebo obyčajný textový popis trasy (súhrnná alebo podrobná verzia). Takisto si môžete prezerať podrobný popis trasy a priblížiť sa na vybrané časti.
+<p>
+<b>Riešenie problémov</b>
+<br>
+Ak smerovač skončí s chybou, najpravdepodobnejšou príčinou je, že medzi vybranými bodmi nie je možné nájsť trasu.
+Presunutie jednej alebo viac značiek alebo zmena možností smerovania umožní nájdenie trasy.
+<p>
+<b>Výstupné formáty</b>
+<br>
+<dl>
+  <dt>HTML inštrukcie
+  <dd>Popis trasy s pokynmi na zmenu smeru na každej dôležitej križovatke.
+  <dt>Trasa v súbore GPX
+  <dd>Rovnaké informácie, ktoré sú zobrazené na mape s bodmi
+    pre každý uzol a čiarami pre každý segment.
+  <dt>Smerovanie v súbore GPX
+  <dd>Rovnaké informácie, ktoré sa zobrazujú v texte pre trasu
+    s trasovým bodom pre každú dôležitú križovatku na trase.
+  <dt>Úplný textový súbor
+  <dd>Zoznam všetkých navštívených uzlov, ako aj vzdialenosť
+    medzi nimi a kumulatívnou vzdialenosťou pre každú časť trasy.
+  <dt>Textový súbor
+  <dd>Rovnaké informácie, ktoré sa zobrazujú v texte pre trasu.
+</dl>
+$$ROUTER-RESULTS-HELP$$
 
 $$ROUTER-VISUALISER-INFO$$
 Na zobrazenie Routino pohľadu na dáta, existuje vizualizér údajov, ktorý umožňuje zobrazenie údajov rôznymi spôsobmi.
