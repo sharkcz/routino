@@ -5,7 +5,7 @@
 
      Part of the Routino routing software.
      ============================================================
-     This file Copyright 2010-2015, 2018, 2019, 2020, 2021 Andrew M. Bishop
+     This file Copyright 2010-2015, 2018, 2019, 2020, 2021, 2022 Andrew M. Bishop
 
      This program is free software: you can redistribute it and/or modify
      it under the terms of the GNU Affero General Public License as published by
@@ -284,9 +284,21 @@
     <!-- Note: The default is that no transport type is allowed on any highway;
                access must be specified to allow each transport type. -->
 
-    <if k="route" v="ferry">
-      <set k="highway" v="ferry"/>
-    </if>
+    <ifnot k="highway">
+
+      <if k="route" v="ferry">
+        <set k="highway" v="ferry"/>
+      </if>
+
+      <if k="public_transport" v="platform">
+        <set k="highway" v="platform"/>
+      </if>
+
+      <if k="railway" v="platform">
+        <set k="highway" v="platform"/>
+      </if>
+
+    </ifnot>
 
     <if k="highway">
 
@@ -541,6 +553,10 @@
       </if>
 
       <if k="highway" v="footway">
+        <set k="highway" v="path"/>
+      </if>
+
+      <if k="highway" v="platform">
         <set k="highway" v="path"/>
       </if>
 
