@@ -67,7 +67,7 @@ Quick Start Guide
    Web Server section below.  You don't have to use 'vi' and can use any
    text editor.
 
-        vi /etc/apache2/sites-enabled/000-default
+        vi /etc/apache2/sites-enabled/000-default.conf
         apache2ctl restart
 
    Now everything should be set up and the web page should work if
