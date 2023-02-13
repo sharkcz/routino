@@ -86,11 +86,15 @@
 @@LANGUAGE@@	Español
 @@LANGUAGE-WEBPAGE@@	Español webpage
 
+@@ROUTER-TITLE@@	Planificador de Rutas para Datos OpenStreetMap
+
 @@OPTION-TAB@@	Opciones
 @@OPTION-TAB-HELP@@	Configurar opciones de enrutado
 
 @@RESULTS-TAB@@	Resultados
+@@RESULTS-TAB-HELP@@	Mostrar Ruta Resultante
 
+@@DATA-TAB@@	Datos
 @@DATA-TAB-HELP@@	Ver información de la base de datos
 
 @@ROUTINO-ROUTER@@	Enrutador de OpenStreetMap Routino
@@ -110,6 +114,13 @@
 @@SHORTEST-ROUTE@@	Ruta más corta
 @@QUICKEST-ROUTE@@	Ruta mas rápida
 
+@@STATISTICS-BOX@@	Estadísticas Routino
+@@VISUALISER-BOX@@	Visualizador Routino
+
+@@WAYPOINT-POSITION@@	Posición Punto de Trayecto XXX
+@@WAYPOINT-LONGITUDE@@	Longitud Punto de Trayecto XXX
+@@WAYPOINT-LATITUDE@@	Latitud Punto de Trayecto XXX
+@@WAYPOINT-LOCATION@@	Localización Punto de Trayecto XXX
 @@WAYPOINT-CENTRE1@@	Centrar mapa en este Waypoint
 
 #
