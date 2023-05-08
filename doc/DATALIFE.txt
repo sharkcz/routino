@@ -115,9 +115,10 @@ SaveNodeList                  :      : n    :   .   .   .   :   : D .   .   : | 
 SaveSegmentList               :      :  s   :   .   .   .   :   :   .   .   : U . U . U :   .   .   :   :   .   .   :   :
 SaveWayList                   :      :   w  :   .   .   .   :   :   .   .   :   .   .   :   .   .   :   :   .   .   :   :
 SaveRelationList              :      :    r :   .   .   .   :   :   .   .   :   .   .   :   .   .   :   :   .   .   :   :
+FreeSegmentList               :      :      :   .   .   .   :   :   .   .   :   .   .   :   .   .   :   :   .   .   :   :
                               :......:......:...............:...:...........:...........:...........:...............:...:
-ProcessErrorLogs              :      :      : c .   .   .   :   :   .   .   :   .   .   : c . c .   :   : c . c . c :   :
-ProcessErrorLogs              :      :      : u .   .   .   :   :   .   .   :   .   .   : u . u .   :   : u . u . u :   :
+ProcessErrorLogs (part 1)     :      :      : c .   .   .   :   :   .   .   :   .   .   : c . c .   :   : c . c . c :   :
+ProcessErrorLogs (part 2)     :      :      : u .   .   .   :   :   .   .   :   .   .   : u . u .   :   : u . u . u :   :
 SortErrorLogsGeographically   :      :      : | .   .   .   :   :   .   .   :   .   .   : | . | .   :   : | . | . | :   :
 SaveErrorLogs                 :      :      : | .   .   .   :   :   .   .   :   .   .   : | . | .   :   : | . | . | :   :
 FreeErrorLogList              :      :      : | .   .   .   :   :   .   .   :   .   .   : | . | .   :   : | . | . | :   :
