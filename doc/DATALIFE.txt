@@ -91,7 +91,7 @@ PruneShortSegments            : NSw  :      :   .   .   .   :   : U . U .   : U 
 FinishPruning                 :      :      :   .   .   .   :   : | . D .   : | .   . | :   .   .   :   :   .   .   :   :     | o
 RemovePrunedNodes             :      : N    :   .   . C .   :   : D .   .   : | .   . | :   .   .   :   :   .   .   :   :     | o
 RemovePrunedSegments          :      :  S   :   .   . | .   :   :   .   . C : U .   . | :   .   .   :   :   .   .   :   :     | p
-CompactWayList                :      :      :   .   . | .   :   :   .   . D : | .   . | :   .   . C : T :   .   .   :   :     |
+CompactWayList                :      :   W  :   .   . | .   :   :   .   . D : | .   . | :   .   . C : T :   .   .   :   :     |
 RemovePrunedTurnRelations     :      :    R :   .   . U .   :   :   .   .   : | .   . | :   .   . | :   :   .   .   :   :     |
 IndexSegments                 :  S   :      :   .   . D .   :   : C .   .   : M . W . | :   .   . D :   :   .   .   :   :     |
                               :......:......:...............:...:...........:...........:...........:...............:...: ----+
