@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2008-2017 Andrew M. Bishop
+ This file Copyright 2008-2017, 2023 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -357,17 +357,15 @@ if(!option_process_only)
 
  RemoveNonHighwayNodes(OSMNodes,OSMWays,option_keep||option_changes);
 
- /* Separate the segments and way names and sort them (must be before processing the segments) */
+ /* Separate the segments and way names and sort them (must be before indexing the segments) */
 
  OSMSegments=SplitWays(OSMWays,OSMNodes,option_keep||option_changes);
 
  SortWayNames(OSMWays);
 
- SortSegmentList(OSMSegments);
+ SortSegmentList(OSMSegments,OSMNodes,OSMWays);
 
- /* Process the segments and index them (must be before processing relations) */
-
- ProcessSegments(OSMSegments,OSMNodes,OSMWays);
+ /* Index the segments (must be before processing relations) */
 
  IndexSegments(OSMSegments,OSMNodes,OSMWays);
 

@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2008-2015, 2019, 2022 Andrew M. Bishop
+ This file Copyright 2008-2015, 2019, 2022, 2023 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -53,6 +53,7 @@ static WaysX *sortwaysx;
 /* Local functions */
 
 static int sort_by_id(SegmentX *a,SegmentX *b);
+static int deduplicate_by_node_ids(SegmentX *segmentx, index_t index);
 
 static int delete_pruned(SegmentX *segmentx,index_t index);
 
@@ -280,15 +281,40 @@ SegmentX *NextSegmentX(SegmentsX *segmentsx,SegmentX *segmentx,index_t nodeindex
   Sort the segment list.
 
   SegmentsX *segmentsx The set of segments to sort.
+
+  NodesX *nodesx The set of nodes to use.
+
+  WaysX *waysx The set of ways to use.
   ++++++++++++++++++++++++++++++++++++++*/
 
-void SortSegmentList(SegmentsX *segmentsx)
+void SortSegmentList(SegmentsX *segmentsx,NodesX *nodesx,WaysX *waysx)
 {
  int fd;
+ index_t xnumber;
 
  /* Print the start message */
 
  printf_first("Sorting Segments");
+
+ /* Map into memory / open the file */
+
+#if !SLIM
+ nodesx->data=MapFile(nodesx->filename_tmp);
+#else
+ nodesx->fd=SlimMapFile(nodesx->filename_tmp);
+
+ InvalidateNodeXCache(nodesx->cache);
+#endif
+
+ /* Map the index into memory */
+
+ nodesx->idata=MapFile(nodesx->ifilename_tmp);
+ waysx->idata =MapFile(waysx->ifilename_tmp);
+
+ /* Allocate the way usage bitmask */
+
+ segmentsx->usedway=AllocBitMask(waysx->number);
+ log_malloc(segmentsx->usedway,SizeBitMask(waysx->number));
 
  /* Re-open the file read-only and a new file writeable */
 
@@ -296,18 +322,37 @@ void SortSegmentList(SegmentsX *segmentsx)
 
  /* Sort by node indexes */
 
+ xnumber=segmentsx->number;
+
+ sortnodesx=nodesx;
+ sortsegmentsx=segmentsx;
+ sortwaysx=waysx;
+
  segmentsx->number=filesort_fixed(segmentsx->fd,fd,sizeof(SegmentX),NULL,
                                                                     (int (*)(const void*,const void*))sort_by_id,
-                                                                    NULL);
+                                                                    (int (*)(void*,index_t))deduplicate_by_node_ids);
 
  /* Close the files */
 
  segmentsx->fd=CloseFileBuffered(segmentsx->fd);
  CloseFileBuffered(fd);
 
+ /* Unmap the index from memory */
+
+ nodesx->idata=UnmapFile(nodesx->idata);
+ waysx->idata =UnmapFile(waysx->idata);
+
+ /* Unmap from memory / close the file */
+
+#if !SLIM
+ nodesx->data=UnmapFile(nodesx->data);
+#else
+ nodesx->fd=SlimUnmapFile(nodesx->fd);
+#endif
+
  /* Print the final message */
 
- printf_last("Sorted Segments: Segments=%"Pindex_t,segmentsx->number);
+ printf_last("Sorted Segments: Segments=%"Pindex_t" Duplicates=%"Pindex_t,xnumber,xnumber-nodesx->number);
 }
 
 
@@ -368,137 +413,76 @@ static int sort_by_id(SegmentX *a,SegmentX *b)
 /*++++++++++++++++++++++++++++++++++++++
   Process segments (non-trivial duplicates).
 
-  SegmentsX *segmentsx The set of segments to modify.
+  int deduplicate_by_node_ids Return 1 if the value is to be kept, otherwise 0.
 
-  NodesX *nodesx The set of nodes to use.
+  SegmentX *segmentx The segment to examine.
 
-  WaysX *waysx The set of ways to use.
+  index_t index The number of sorted segments that have already been written to the output file.
   ++++++++++++++++++++++++++++++++++++++*/
 
-void ProcessSegments(SegmentsX *segmentsx,NodesX *nodesx,WaysX *waysx)
+static int deduplicate_by_node_ids(SegmentX *segmentx, index_t index)
 {
- index_t duplicate=0,good=0,total=0;
- index_t prevnode1=NO_NODE,prevnode2=NO_NODE;
- index_t prevway=NO_WAY;
- distance_t prevdist=0;
- SegmentX segmentx;
- int fd;
+ static index_t prevnode1=NO_NODE,prevnode2=NO_NODE; /* internal variable (reset by first call in each sort; index==0) */
+ static index_t prevway=NO_WAY; /* internal variable (reset by first call in each sort; index==0) */
+ static distance_t prevdist=0; /* internal variable (reset by first call in each sort; index==0) */
 
- /* Print the start message */
-
- printf_first("Processing Segments: Segments=0 Duplicates=0");
-
- /* Map into memory / open the file */
-
-#if !SLIM
- nodesx->data=MapFile(nodesx->filename_tmp);
-#else
- nodesx->fd=SlimMapFile(nodesx->filename_tmp);
-
- InvalidateNodeXCache(nodesx->cache);
-#endif
-
- /* Map the index into memory */
-
- nodesx->idata=MapFile(nodesx->ifilename_tmp);
- waysx->idata =MapFile(waysx->ifilename_tmp);
-
- /* Allocate the way usage bitmask */
-
- segmentsx->usedway=AllocBitMask(waysx->number);
- log_malloc(segmentsx->usedway,SizeBitMask(waysx->number));
-
- /* Re-open the file read-only and a new file writeable */
-
- fd=ReplaceFileBuffered(segmentsx->filename_tmp,&segmentsx->fd);
-
- /* Modify the on-disk image */
-
- while(!ReadFileBuffered(segmentsx->fd,&segmentx,sizeof(SegmentX)))
+ if(index==0)
    {
-    if(prevnode1==segmentx.node1 && prevnode2==segmentx.node2)
+    prevnode1=NO_NODE;
+    prevnode2=NO_NODE;
+    prevway=NO_WAY;
+    prevdist=0;
+   }
+
+ if(prevnode1==segmentx->node1 && prevnode2==segmentx->node2)
+   {
+    node_t id1=sortnodesx->idata[segmentx->node1];
+    node_t id2=sortnodesx->idata[segmentx->node2];
+
+    if(prevway==segmentx->way)
       {
-       node_t id1=nodesx->idata[segmentx.node1];
-       node_t id2=nodesx->idata[segmentx.node2];
+       way_t id=sortwaysx->idata[segmentx->way];
 
-       if(prevway==segmentx.way)
-         {
-          way_t id=waysx->idata[segmentx.way];
-
-          logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" in way %"Pway_t" is duplicated.\n",logerror_node(id1),logerror_node(id2),logerror_way(id));
-         }
-       else
-         {
-          if(!(prevdist&SEGMENT_AREA) && !(segmentx.distance&SEGMENT_AREA))
-             logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" is duplicated.\n",logerror_node(id1),logerror_node(id2));
-
-          if(!(prevdist&SEGMENT_AREA) && (segmentx.distance&SEGMENT_AREA))
-             logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" is duplicated (discarded the area).\n",logerror_node(id1),logerror_node(id2));
-
-          if((prevdist&SEGMENT_AREA) && !(segmentx.distance&SEGMENT_AREA))
-             logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" is duplicated (discarded the non-area).\n",logerror_node(id1),logerror_node(id2));
-
-          if((prevdist&SEGMENT_AREA) && (segmentx.distance&SEGMENT_AREA))
-             logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" is duplicated (both are areas).\n",logerror_node(id1),logerror_node(id2));
-         }
-
-       duplicate++;
+       logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" in way %"Pway_t" is duplicated.\n",logerror_node(id1),logerror_node(id2),logerror_way(id));
       }
     else
       {
-       NodeX *nodex1=LookupNodeX(nodesx,segmentx.node1,1);
-       NodeX *nodex2=LookupNodeX(nodesx,segmentx.node2,2);
+       if(!(prevdist&SEGMENT_AREA) && !(segmentx->distance&SEGMENT_AREA))
+          logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" is duplicated.\n",logerror_node(id1),logerror_node(id2));
 
-       prevnode1=segmentx.node1;
-       prevnode2=segmentx.node2;
-       prevway=segmentx.way;
-       prevdist=DISTANCE(segmentx.distance);
+       if(!(prevdist&SEGMENT_AREA) && (segmentx->distance&SEGMENT_AREA))
+          logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" is duplicated (discarded the area).\n",logerror_node(id1),logerror_node(id2));
 
-       /* Mark the ways which are used */
+       if((prevdist&SEGMENT_AREA) && !(segmentx->distance&SEGMENT_AREA))
+          logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" is duplicated (discarded the non-area).\n",logerror_node(id1),logerror_node(id2));
 
-       SetBit(segmentsx->usedway,segmentx.way);
-
-       /* Set the distance but keep the other flags except for area */
-
-       segmentx.distance=DISTANCE(DistanceX(nodex1,nodex2))|DISTFLAG(segmentx.distance);
-       segmentx.distance&=~SEGMENT_AREA;
-
-       /* Write the modified segment */
-
-       WriteFileBuffered(fd,&segmentx,sizeof(SegmentX));
-
-       good++;
+       if((prevdist&SEGMENT_AREA) && (segmentx->distance&SEGMENT_AREA))
+          logerror("Segment connecting nodes %"Pnode_t" and %"Pnode_t" is duplicated (both are areas).\n",logerror_node(id1),logerror_node(id2));
       }
 
-    total++;
-
-    if(!(total%10000))
-       printf_middle("Processing Segments: Segments=%"Pindex_t" Duplicates=%"Pindex_t,total,duplicate);
+    return(0);
    }
+ else
+   {
+    NodeX *nodex1=LookupNodeX(sortnodesx,segmentx->node1,1);
+    NodeX *nodex2=LookupNodeX(sortnodesx,segmentx->node2,2);
 
- segmentsx->number=good;
+    prevnode1=segmentx->node1;
+    prevnode2=segmentx->node2;
+    prevway=segmentx->way;
+    prevdist=DISTANCE(segmentx->distance);
 
- /* Close the files */
+    /* Mark the ways which are used */
 
- segmentsx->fd=CloseFileBuffered(segmentsx->fd);
- CloseFileBuffered(fd);
+    SetBit(sortsegmentsx->usedway,segmentx->way);
 
- /* Unmap the index from memory */
+    /* Set the distance but keep the other flags except for area */
 
- nodesx->idata=UnmapFile(nodesx->idata);
- waysx->idata =UnmapFile(waysx->idata);
+    segmentx->distance=DISTANCE(DistanceX(nodex1,nodex2))|DISTFLAG(segmentx->distance);
+    segmentx->distance&=~SEGMENT_AREA;
 
- /* Unmap from memory / close the file */
-
-#if !SLIM
- nodesx->data=UnmapFile(nodesx->data);
-#else
- nodesx->fd=SlimUnmapFile(nodesx->fd);
-#endif
-
- /* Print the final message */
-
- printf_last("Processed Segments: Segments=%"Pindex_t" Duplicates=%"Pindex_t,total,duplicate);
+    return(1);
+   }
 }
 
 

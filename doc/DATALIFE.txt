@@ -73,8 +73,7 @@ SortRelationList              :      :    R : | .   .   .   : | :   .   .   :   
 RemoveNonHighwayNodes         :      : N w  : m .   .   .   : U :   .   .   :   .   .   : | .   .   :   :   .   .   : | :
 SplitWays                     :      :  SW  : u .   .   .   :   :   .   .   : W .   . W : u .   .   :   :   .   .   : | :
 SortWayNames                  :   W  :      : | .   .   .   :   :   .   .   : | .   . | : | .   .   :   :   .   .   : | :
-SortSegmentList               :      :  S   : | .   .   .   :   :   .   .   : U .   . | : | .   .   :   :   .   .   : | :
-ProcessSegments               : n    :  S   : u .   .   .   :   :   .   . C : U .   . U : u .   .   :   :   .   .   : | :
+SortSegmentList               : n    :  S   : u .   .   .   :   :   .   . C : U .   . U : u .   .   :   :   .   .   : | :
 IndexSegments                 :  S   :      : | .   .   .   :   : C .   . | : U . W . | : | .   .   :   :   .   .   : | :
 ProcessRouteRelations         :   W  :    r : | .   .   .   :   : | .   . | : | . | . | : u .   .   :   :   .   .   : U :
 ProcessTurnRelations          : Nsw  :    R : u .   .   .   :   : D .   . | : U . U . | : u .   .   :   :   .   .   : U :

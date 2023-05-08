@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2008-2015 Andrew M. Bishop
+ This file Copyright 2008-2015, 2023 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -91,7 +91,7 @@ void FinishSegmentList(SegmentsX *segmentsx);
 SegmentX *FirstSegmentX(SegmentsX *segmentsx,index_t nodeindex,int position);
 SegmentX *NextSegmentX(SegmentsX *segmentsx,SegmentX *segmentx,index_t nodeindex);
 
-void SortSegmentList(SegmentsX *segmentsx);
+void SortSegmentList(SegmentsX *segmentsx,NodesX *nodesx,WaysX *waysx);
 
 void IndexSegments(SegmentsX *segmentsx,NodesX *nodesx,WaysX *waysx);
 
