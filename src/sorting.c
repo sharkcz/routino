@@ -3,7 +3,7 @@
 
  Part of the Routino routing software.
  ******************/ /******************
- This file Copyright 2009-2015, 2017, 2019 Andrew M. Bishop
+ This file Copyright 2009-2015, 2017, 2019, 2023 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -173,7 +173,30 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
 
     if(option_filesort_threads>1)
       {
-       /* Find a spare slot (one *must* be unused at all times) */
+       /* If all threads are in use wait for an existing thread to finish */
+
+       if(nthreads==option_filesort_threads)
+         {
+          pthread_mutex_lock(&running_mutex);
+
+          while(nthreads==option_filesort_threads)
+            {
+             for(i=0;i<option_filesort_threads;i++)
+                if(threads[i].running==2)
+                  {
+                   pthread_join(threads[i].thread,NULL);
+                   threads[i].running=0;
+                   nthreads--;
+                  }
+
+             if(nthreads==(option_filesort_threads-1))
+                pthread_cond_wait(&running_cond,&running_mutex);
+            }
+
+          pthread_mutex_unlock(&running_mutex);
+         }
+
+       /* Find a spare slot */
 
        pthread_mutex_lock(&running_mutex);
 
@@ -223,29 +246,16 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
 
     sprintf(threads[thread].filename,"%s/filesort.%d.tmp",option_tmpdirname,nfiles);
 
-#if defined(USE_PTHREADS) && USE_PTHREADS
-
     /* Shortcut if only one file, don't write to disk */
 
     if(more==0 && nfiles==0)
        filesort_heapsort(threads[thread].datap,threads[thread].n,threads[thread].compare);
+
+#if defined(USE_PTHREADS) && USE_PTHREADS
+
     else if(option_filesort_threads>1)
       {
        pthread_mutex_lock(&running_mutex);
-
-       while(nthreads==(option_filesort_threads-1))
-         {
-          for(i=0;i<option_filesort_threads;i++)
-             if(threads[i].running==2)
-               {
-                pthread_join(threads[i].thread,NULL);
-                threads[i].running=0;
-                nthreads--;
-               }
-
-          if(nthreads==(option_filesort_threads-1))
-             pthread_cond_wait(&running_cond,&running_mutex);
-         }
 
        threads[thread].running=1;
 
@@ -255,19 +265,11 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
 
        nthreads++;
       }
-    else
-       filesort_fixed_heapsort_thread(&threads[thread]);
-
-#else
-
-    /* Shortcut if only one file, don't write to disk */
-
-    if(more==0 && nfiles==0)
-       filesort_heapsort(threads[thread].datap,threads[thread].n,threads[thread].compare);
-    else
-       filesort_fixed_heapsort_thread(&threads[thread]);
 
 #endif
+
+    else
+       filesort_fixed_heapsort_thread(&threads[thread]);
 
     nfiles++;
    }
@@ -564,7 +566,30 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
 
     if(option_filesort_threads>1)
       {
-       /* Find a spare slot (one *must* be unused at all times) */
+       /* If all threads are in use wait for an existing thread to finish */
+
+       if(nthreads==option_filesort_threads)
+         {
+          pthread_mutex_lock(&running_mutex);
+
+          while(nthreads==option_filesort_threads)
+            {
+             for(i=0;i<option_filesort_threads;i++)
+                if(threads[i].running==2)
+                  {
+                   pthread_join(threads[i].thread,NULL);
+                   threads[i].running=0;
+                   nthreads--;
+                  }
+
+             if(nthreads==(option_filesort_threads-1))
+                pthread_cond_wait(&running_cond,&running_mutex);
+            }
+
+          pthread_mutex_unlock(&running_mutex);
+         }
+
+       /* Find a spare slot */
 
        pthread_mutex_lock(&running_mutex);
 
@@ -632,29 +657,16 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
     else
        sprintf(threads[thread].filename,"%s/filesort.%d.tmp",option_tmpdirname,nfiles);
 
-#if defined(USE_PTHREADS) && USE_PTHREADS
-
     /* Shortcut if only one file, don't write to disk */
 
     if(more==0 && nfiles==0)
        filesort_heapsort(threads[thread].datap,threads[thread].n,threads[thread].compare);
+
+#if defined(USE_PTHREADS) && USE_PTHREADS
+
     else if(option_filesort_threads>1)
       {
        pthread_mutex_lock(&running_mutex);
-
-       while(nthreads==(option_filesort_threads-1))
-         {
-          for(i=0;i<option_filesort_threads;i++)
-             if(threads[i].running==2)
-               {
-                pthread_join(threads[i].thread,NULL);
-                threads[i].running=0;
-                nthreads--;
-               }
-
-          if(nthreads==(option_filesort_threads-1))
-             pthread_cond_wait(&running_cond,&running_mutex);
-         }
 
        threads[thread].running=1;
 
@@ -664,19 +676,11 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
 
        nthreads++;
       }
-    else
-       filesort_vary_heapsort_thread(&threads[thread]);
-
-#else
-
-    /* Shortcut if only one file, don't write to disk */
-
-    if(more==0 && nfiles==0)
-       filesort_heapsort(threads[thread].datap,threads[thread].n,threads[thread].compare);
-    else
-       filesort_vary_heapsort_thread(&threads[thread]);
 
 #endif
+
+    else
+       filesort_vary_heapsort_thread(&threads[thread]);
 
     nfiles++;
    }
