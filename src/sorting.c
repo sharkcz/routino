@@ -64,10 +64,10 @@ typedef struct _thread_data
   void    **datap;              /*+ An array of pointers to the data objects. +*/
   size_t    n;                  /*+ The number of pointers. +*/
 
-  char    *filename;            /*+ The name of the file to write the results to. +*/
+  int       fd;                 /*+ The file descriptor of the file to write the results to. +*/
 
-  size_t   itemsize;            /*+ The size of each item. +*/
-  int    (*compare)(const void*,const void*); /*+ The comparison function. +*/
+  size_t    itemsize;           /*+ The size of each item. +*/
+  int     (*compare)(const void*,const void*); /*+ The comparison function. +*/
  }
  thread_data;
 
@@ -76,7 +76,6 @@ typedef struct _thread_data
 #if defined(USE_PTHREADS) && USE_PTHREADS
 
 static pthread_mutex_t running_mutex = PTHREAD_MUTEX_INITIALIZER;
-static pthread_mutex_t files_mutex   = PTHREAD_MUTEX_INITIALIZER;
 static pthread_cond_t  running_cond  = PTHREAD_COND_INITIALIZER;
 
 #endif
@@ -131,6 +130,7 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
  void **datap;
  thread_data *threads;
  int i,more=1;
+ char *filename=(char*)malloc_logassert(strlen(option_tmpdirname)+24);
 #if defined(USE_PTHREADS) && USE_PTHREADS
  int nthreads=0;
 #endif
@@ -156,8 +156,6 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
 
     log_malloc(threads[i].data ,nitems*itemsize);
     log_malloc(threads[i].datap,nitems*sizeof(void*));
-
-    threads[i].filename=(char*)malloc_logassert(strlen(option_tmpdirname)+24);
 
     threads[i].itemsize=itemsize;
     threads[i].compare=compare_function;
@@ -186,6 +184,7 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
                   {
                    pthread_join(threads[i].thread,NULL);
                    threads[i].running=0;
+                   CloseFileBuffered(threads[i].fd);
                    nthreads--;
                   }
 
@@ -242,9 +241,11 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
     if(threads[thread].n==0)
        break;
 
-    /* Sort the data pointers using a heap sort (potentially in a thread) */
+    /* Create the file descriptor (not thread-safe) */
 
-    sprintf(threads[thread].filename,"%s/filesort.%d.tmp",option_tmpdirname,nfiles);
+    sprintf(filename,"%s/filesort.%d.tmp",option_tmpdirname,nfiles);
+
+    threads[thread].fd=OpenFileBufferedNew(filename);
 
     /* Shortcut if only one file, don't write to disk */
 
@@ -290,6 +291,7 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
          {
           pthread_join(threads[i].thread,NULL);
           threads[i].running=0;
+          CloseFileBuffered(threads[i].fd);
           nthreads--;
          }
 
@@ -316,7 +318,7 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
          }
       }
 
-    DeleteFile(threads[0].filename);
+    DeleteFile(filename);
 
     goto tidy_and_exit;
    }
@@ -331,8 +333,6 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
 
  for(i=0;i<nfiles;i++)
    {
-    char *filename=threads[0].filename;
-
     sprintf(filename,"%s/filesort.%d.tmp",option_tmpdirname,i);
 
     fds[i]=ReOpenFileBuffered(filename);
@@ -463,11 +463,11 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
 
     free(threads[i].data);
     free(threads[i].datap);
-
-    free(threads[i].filename);
    }
 
  free(threads);
+
+ free(filename);
 
  return(count_out);
 }
@@ -516,6 +516,7 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
  void **datap;
  thread_data *threads;
  int i,more=1;
+ char *filename=(char*)malloc_logassert(strlen(option_tmpdirname)+24);
 #if defined(USE_PTHREADS) && USE_PTHREADS
  int nthreads=0;
 #endif
@@ -547,8 +548,6 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
 
     log_malloc(threads[i].data,datasize);
 
-    threads[i].filename=(char*)malloc_logassert(strlen(option_tmpdirname)+24);
-
     threads[i].compare=compare_function;
    }
 
@@ -579,6 +578,7 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
                   {
                    pthread_join(threads[i].thread,NULL);
                    threads[i].running=0;
+                   CloseFileBuffered(threads[i].fd);
                    nthreads--;
                   }
 
@@ -650,12 +650,11 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
     if(threads[thread].n==0)
        break;
 
-    /* Sort the data pointers using a heap sort (potentially in a thread) */
+    /* Create the file descriptor (not thread-safe) */
 
-    if(more==0 && nfiles==0)
-       threads[thread].filename[0]=0;
-    else
-       sprintf(threads[thread].filename,"%s/filesort.%d.tmp",option_tmpdirname,nfiles);
+    sprintf(filename,"%s/filesort.%d.tmp",option_tmpdirname,nfiles);
+
+    threads[thread].fd=OpenFileBufferedNew(filename);
 
     /* Shortcut if only one file, don't write to disk */
 
@@ -701,6 +700,7 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
          {
           pthread_join(threads[i].thread,NULL);
           threads[i].running=0;
+          CloseFileBuffered(threads[i].fd);
           nthreads--;
          }
 
@@ -729,7 +729,7 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
          }
       }
 
-    DeleteFile(threads[0].filename);
+    DeleteFile(filename);
 
     goto tidy_and_exit;
    }
@@ -746,8 +746,6 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
 
  for(i=0;i<nfiles;i++)
    {
-    char *filename=threads[0].filename;
-
     sprintf(filename,"%s/filesort.%d.tmp",option_tmpdirname,i);
 
     fds[i]=ReOpenFileBuffered(filename);
@@ -890,11 +888,11 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
     log_free(threads[i].data);
 
     free(threads[i].data);
-
-    free(threads[i].filename);
    }
 
  free(threads);
+
+ free(filename);
 
  return(count_out);
 }
@@ -910,35 +908,21 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
 
 static void *filesort_fixed_heapsort_thread(thread_data *thread)
 {
- int fd;
  size_t item;
 
  /* Sort the data pointers using a heap sort */
 
  filesort_heapsort(thread->datap,thread->n,thread->compare);
 
- /* Create a temporary file and write the result */
-
-#if defined(USE_PTHREADS) && USE_PTHREADS
-
- if(option_filesort_threads>1)
-    pthread_mutex_lock(&files_mutex);
-
-#endif
-
- fd=OpenFileBufferedNew(thread->filename);
+ /* Write the result to the given temporary file */
 
  for(item=0;item<thread->n;item++)
-    WriteFileBuffered(fd,thread->datap[item],thread->itemsize);
-
- CloseFileBuffered(fd);
+    WriteFileBuffered(thread->fd,thread->datap[item],thread->itemsize);
 
 #if defined(USE_PTHREADS) && USE_PTHREADS
 
  if(option_filesort_threads>1)
    {
-    pthread_mutex_unlock(&files_mutex);
-
     pthread_mutex_lock(&running_mutex);
 
     thread->running=2;
@@ -964,39 +948,25 @@ static void *filesort_fixed_heapsort_thread(thread_data *thread)
 
 static void *filesort_vary_heapsort_thread(thread_data *thread)
 {
- int fd;
  size_t item;
 
  /* Sort the data pointers using a heap sort */
 
  filesort_heapsort(thread->datap,thread->n,thread->compare);
 
- /* Create a temporary file and write the result */
-
-#if defined(USE_PTHREADS) && USE_PTHREADS
-
- if(option_filesort_threads>1)
-    pthread_mutex_lock(&files_mutex);
-
-#endif
-
- fd=OpenFileBufferedNew(thread->filename);
+ /* Write the result to the given temporary file */
 
  for(item=0;item<thread->n;item++)
    {
     FILESORT_VARINT itemsize=*(FILESORT_VARINT*)((char*)thread->datap[item]-FILESORT_VARSIZE);
 
-    WriteFileBuffered(fd,(char*)thread->datap[item]-FILESORT_VARSIZE,itemsize+FILESORT_VARSIZE);
+    WriteFileBuffered(thread->fd,(char*)thread->datap[item]-FILESORT_VARSIZE,itemsize+FILESORT_VARSIZE);
    }
-
- CloseFileBuffered(fd);
 
 #if defined(USE_PTHREADS) && USE_PTHREADS
 
  if(option_filesort_threads>1)
    {
-    pthread_mutex_unlock(&files_mutex);
-
     pthread_mutex_lock(&running_mutex);
 
     thread->running=2;
