@@ -250,7 +250,11 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
     /* Shortcut if only one file, don't write to disk */
 
     if(more==0 && nfiles==0)
+      {
        filesort_heapsort(threads[thread].datap,threads[thread].n,threads[thread].compare);
+
+       CloseFileBuffered(threads[thread].fd);
+      }
 
 #if defined(USE_PTHREADS) && USE_PTHREADS
 
@@ -270,7 +274,11 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
 #endif
 
     else
+      {
        filesort_fixed_heapsort_thread(&threads[thread]);
+
+       CloseFileBuffered(threads[thread].fd);
+      }
 
     nfiles++;
    }
@@ -659,7 +667,11 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
     /* Shortcut if only one file, don't write to disk */
 
     if(more==0 && nfiles==0)
+      {
        filesort_heapsort(threads[thread].datap,threads[thread].n,threads[thread].compare);
+
+       CloseFileBuffered(threads[thread].fd);
+      }
 
 #if defined(USE_PTHREADS) && USE_PTHREADS
 
@@ -679,7 +691,11 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
 #endif
 
     else
+      {
        filesort_vary_heapsort_thread(&threads[thread]);
+
+       CloseFileBuffered(threads[thread].fd);
+      }
 
     nfiles++;
    }
