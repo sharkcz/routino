@@ -188,7 +188,7 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
                    nthreads--;
                   }
 
-             if(nthreads==(option_filesort_threads-1))
+             if(nthreads==option_filesort_threads)
                 pthread_cond_wait(&running_cond,&running_mutex);
             }
 
@@ -582,7 +582,7 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
                    nthreads--;
                   }
 
-             if(nthreads==(option_filesort_threads-1))
+             if(nthreads==option_filesort_threads)
                 pthread_cond_wait(&running_cond,&running_mutex);
             }
 
