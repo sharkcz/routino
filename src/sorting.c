@@ -142,7 +142,9 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
  if(nitems==0)
     return(0);
 
- if((nitems*(itemsize+sizeof(void*)))<option_filesort_ramsize)
+ if((nitems*(itemsize+sizeof(void*)))<(option_filesort_ramsize/option_filesort_threads))
+    /* use one thread */;
+ else if((nitems*(itemsize+sizeof(void*)))<option_filesort_ramsize)
     nitems=1+nitems/option_filesort_threads;
  else
     nitems=option_filesort_ramsize/(option_filesort_threads*(itemsize+sizeof(void*)));
@@ -542,7 +544,9 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
     one will require RAM for data, FILESORT_VARALIGN and sizeof(void*)
     Assume that data+FILESORT_VARALIGN+sizeof(void*) is 4*data. */
 
- if((datasize*4)<option_filesort_ramsize)
+ if((datasize*4)<option_filesort_ramsize/option_filesort_threads)
+    /* use one thread */;
+ else if((datasize*4)<option_filesort_ramsize)
     datasize=(datasize*4)/option_filesort_threads;
  else
     datasize=option_filesort_ramsize/option_filesort_threads;
