@@ -328,6 +328,8 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
          }
       }
 
+    DeleteFile(filename);
+
     goto tidy_and_exit;
    }
 
