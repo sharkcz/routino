@@ -12,7 +12,7 @@
 
  Part of the Routino routing software.
 
- This file Copyright 2008-2015, 2020 Andrew M. Bishop
+ This file Copyright 2008-2015, 2020, 2023 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -99,7 +99,7 @@ Usage: planetsplitter [--version]
     Defaults to no prefix.
   <dt>--sort-ram-size=&lt;size&gt;
   <dd>Specifies the amount of RAM (in MB) to use for sorting the data.  If not
-    specified then 64 MB will be used in slim mode or 256 MB otherwise.
+    specified then 256 MB will be used in slim mode or 1024 MB otherwise.
   <dt>--sort-threads=&lt;number&gt;
   <dd>The number of threads to use for data sorting (the sorting memory is
     shared between the threads - too many threads and not enough memory will
@@ -173,10 +173,13 @@ Usage: planetsplitter [--version]
 </dl>
 
 <p>
-<i>Note: In version 2.5 of Routino the ability to read data from the standard
-input has been removed.  This is because there is now the ability to read
-compressed files (bzip2, gzip, xz) and PBF files directly.  Also using standard
-input the file type cannot be auto-detected from the filename.</i>
+<i>Note: It is recommended use the <tt>--sort-ram-size</tt> and
+<tt>--sort-threads</tt> options because they can make a significant
+reduction in the amount of time that it takes to create the database.
+Selection of the values to use will depend on the computer being used
+and the size of the dataset being processed.  Selecting half the
+number of CPU cores and half the amount of available RAM is a
+reasonable starting point.</i>
 
 <p>
 Example usage 1:

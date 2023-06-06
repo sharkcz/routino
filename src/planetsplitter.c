@@ -167,9 +167,9 @@ int main(int argc,char** argv)
  else if(option_filesort_ramsize==0)
    {
 #if SLIM
-    option_filesort_ramsize=64*1024*1024;
-#else
     option_filesort_ramsize=256*1024*1024;
+#else
+    option_filesort_ramsize=1024*1024*1024;
 #endif
    }
  else
@@ -686,9 +686,9 @@ static void print_usage(int detail,const char *argerr,const char *err)
             "\n"
             "--sort-ram-size=<size>    The amount of RAM (in MB) to use for data sorting\n"
 #if SLIM
-            "                          (defaults to 64MB otherwise.)\n"
-#else
             "                          (defaults to 256MB otherwise.)\n"
+#else
+            "                          (defaults to 1024MB otherwise.)\n"
 #endif
 #if defined(USE_PTHREADS) && USE_PTHREADS
             "--sort-threads=<number>   The number of threads to use for data sorting.\n"

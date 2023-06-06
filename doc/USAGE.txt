@@ -56,8 +56,8 @@ planetsplitter
 
    --sort-ram-size=<size>
           Specifies the amount of RAM (in MB) to use for sorting the data.
-          If not specified then 64 MB will be used in slim mode or 256 MB
-          otherwise.
+          If not specified then 256 MB will be used in slim mode or 1024
+          MB otherwise.
 
    --sort-threads=<number>
           The number of threads to use for data sorting (the sorting
@@ -157,11 +157,12 @@ planetsplitter
           support compiled in). Filenames ending '.xz' will be xz
           uncompressed (if xz support compiled in).
 
-   Note: In version 2.5 of Routino the ability to read data from the
-   standard input has been removed. This is because there is now the
-   ability to read compressed files (bzip2, gzip, xz) and PBF files
-   directly. Also using standard input the file type cannot be
-   auto-detected from the filename.
+   Note: It is recommended use the --sort-ram-size and --sort-threads
+   options because they can make a significant reduction in the amount of
+   time that it takes to create the database. Selection of the values to
+   use will depend on the computer being used and the size of the dataset
+   being processed. Selecting half the number of CPU cores and half the
+   amount of available RAM is a reasonable starting point.
 
    Example usage 1:
 
@@ -661,4 +662,4 @@ filedumperx
 
 --------
 
-Copyright 2008-2015 Andrew M. Bishop.
+Copyright 2008-2023 Andrew M. Bishop.

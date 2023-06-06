@@ -41,7 +41,7 @@ Usage: fixme-finder [--version]
 --dir=<dirname>           The directory containing the fixme database.
 
 --sort-ram-size=<size>    The amount of RAM (in MB) to use for data sorting
-                          (defaults to 256MB otherwise.)
+                          (defaults to 1024MB otherwise.)
 --sort-threads=<number>   The number of threads to use for data sorting.
 
 --tmpdir=<dirname>        The directory name for temporary files.
