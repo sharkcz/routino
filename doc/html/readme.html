@@ -12,7 +12,7 @@
 
  Part of the Routino routing software.
 
- This file Copyright 2008-2017, 2019, 2020 Andrew M. Bishop
+ This file Copyright 2008-2017, 2019, 2020, 2023 Andrew M. Bishop
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as published by
@@ -159,59 +159,7 @@ what should go in the configuration files and how it works.
 
 Version 1.0 of Routino was released on 8th April 2009.
 <br>
-Version 1.1 of Routino was released on 13th June 2009.
-<br>
-Version 1.2 of Routino was released on 21st October 2009.
-<br>
-Version 1.3 of Routino was released on 21st January 2010.
-<br>
-Version 1.4 of Routino was released on 31st May 2010.
-<br>
-Version 1.4.1 of Routino was released on 10th July 2010.
-<br>
-Version 1.5 of Routino was released on 30th October 2010.
-<br>
-Version 1.5.1 of Routino was released on 13th November 2010.
-<br>
 Version 2.0 of Routino was released on 30th May 2011.
-<br>
-Version 2.0.1 of Routino was released on 7th June 2011.
-<br>
-Version 2.0.2 of Routino was released on 26th June 2011.
-<br>
-Version 2.0.3 of Routino was released on 4th August 2011.
-<br>
-Version 2.1 of Routino was released on 3rd October 2011.
-<br>
-Version 2.1.1 of Routino was released on 23rd October 2011.
-<br>
-Version 2.1.2 of Routino was released on 12th November 2011.
-<br>
-Version 2.2 of Routino was released on 3rd March 2012.
-<br>
-Version 2.3 of Routino was released on 21st July 2012.
-<br>
-Version 2.3.1 of Routino was released on 11th August 2012.
-<br>
-Version 2.3.2 of Routino was released on 6th October 2012.
-<br>
-Version 2.4 of Routino was released on 8th December 2012.
-<br>
-Version 2.4.1 of Routino was released on 17th December 2012.
-<br>
-Version 2.5 of Routino was released on 9th February 2013.
-<br>
-Version 2.5.1 of Routino was released on 20th April 2013.
-<br>
-Version 2.6 of Routino was released on 6th July 2013.
-<br>
-Version 2.7 of Routino was released on 22nd March 2014.
-<br>
-Version 2.7.1 of Routino was released on 17th May 2014.
-<br>
-Version 2.7.2 of Routino was released on 26th June 2014.
-<br>
-Version 2.7.3 of Routino was released on 8th November 2014.
 <br>
 Version 3.0 of Routino was released on 12th September 2015.
 <br>
@@ -228,107 +176,48 @@ Version 3.3.1 of Routino was released on 8th September 2019.
 Version 3.3.2 of Routino was released on 18th September 2019.
 <br>
 Version 3.3.3 of Routino was released on 30th December 2020.
+<br>
+Version 3.4 of Routino was released on 11th June 2023.
 
 <p>
 
 The full version history is available in the NEWS.txt file.
 
-<h3 id="H_1_5_1" title="Changes 3.3.3">Changes in Version 3.3.3</h3>
+<h3 id="H_1_5_1" title="Changes 3.4">Changes in Version 3.4</h3>
 
 <dl>
   <dt>Bug fixes:
-    <dd>More bug fixes for compiling python library (environment variables).
-    <br>Ensure that we do not try memory mapping a zero length file.
-    <br>Catch NULL pointers being passed into the library functions.
-    <br>Fix some documentation errors.
-
+    <dd>Avoid infinite recursion when parsing route relations.
+    <br>Ignore excess data rather than fail to process huge route relations.
   <dt>planetsplitter:
-    <dd>Reduce memory use by mapping more data from file rather than allocating it.
-
-  <dt>Python:
-    <dd>Support the use of the progress callback function when calculating a route.
-
-  <dt>Translations:
-    <dd>Updated Czech, Dutch, German and Russian translations.
-    <dd>Added Finnish translation.
-
-  <dt>Web pages:
-    <dd>Zoom to the visible markers from the URL if no lat/long/zoom in the URL.
-    <br>Improve the setting / clearing of the cookie for the home location.
-    <br>Update the URL when new waypoints are added etc.
-    <br>Update the visualiser/fixme data as you move around the map.
-    <br>Test with the latest version of Leaflet (1.7.1).
-    <br>Add support for the latest version of OpenLayers (6.4.3).
-</dl>
-
-<p>
-<b>Note:</b> This version is compatible with databases from versions 2.7.1 - 3.3.2.
-
-
-<h3 id="H_1_5_2" title="Changes 3.3.2">Changes in Version 3.3.2</h3>
-
-<dl>
-  <dt>Bug fixes:
-    <dd>Ensure that parallel compilation works in the python directory.
-    <br>Updated the version number in the executables to "3.3.2".
-</dl>
-
-<p>
-<b>Note:</b> This version is compatible with databases from versions 2.7.1 - 3.3.
-
-
-<h3 id="H_1_5_3" title="Changes 3.3.1">Changes in Version 3.3.1</h3>
-
-<dl>
-  <dt>Bug fixes:
-    <dd>Ensure that 'make clean' in the python directory deletes auto-generated files.
-    <br>Include the python directory in the release file (include in 'FILES').
-</dl>
-
-<p>
-<b>Note:</b> This version is compatible with databases from versions 2.7.1 - 3.3.
-
-
-<h3 id="H_1_5_4" title="Changes 3.3">Changes in Version 3.3</h3>
-
-<dl>
-  <dt>Bug fixes:
-    <dd>Make the openlayers and leaflet zoom to the same level on clicking the route.
-    <br>Add some more memory debug logging (for queue data structure).
-    <br>Fix bug with route calculation that may not give optimum solution.
-    <br>Fix parallel make to not have failed targets due to 'mkdir' race condition.
-    <br>Supress compilation warnings from gcc-7 and gcc-8.
-    <br>Supress compilation warnings from clang-5 and clang-5 static analyser.
-    <br>Suppress runtime warnings from gcc's runtime sanitizer.
-    <br>Bug fix for race condition in multi-threaded sorting algorithm.
-    <br>Bug fix for HTML router when named locations are used.
-    <br>Fix some error messages for consistency.
-    <br>Add extra checks to avoid data overflow and file corruption in planetsplitter.
-    <br>Add more checks for memory allocation success/failure.
-  <dt>planetsplitter:
-    <dd>Do not store nodes in route relations (they are not used).
-  <dt>Documentation:
-    <dd>Added an extra Perl module that is required.
-  <dt>Translations:
-    <dd>Updated German, French and Hungarian translations.
-    <br>Added Italian and Spanish translations.
-    <br>Added incomplete Czech translations.
+    <dd>Speed up node processing on large databases.
+    <br>Merge some steps together to speed up processing.
+    <br>Speed up multi-threaded sorting, increase default memory size.
   <dt>OSM tagging:
-    <dd>Some small changes to access tagging and highway naming (prow_ref).
-    <br>Add heuristics to decide what transport types are allowed on ferrys.
-  <dt>Web pages:
-    <dd>Update to use the latest version of Leaflet (1.5.1).
-    <br>Add support for the latest version of OpenLayers (5.3).
-    <br>Default to showing search boxes for locations not lat/long fields.
+    <dd>Don't route through barriers (fence, wall etc) explicitly tagged on a node.
+    <br>Add platforms (public transport) as highways, equivalent to a path.
+    <br>Only look for access tags on barriers not other nodes.
   <dt>Python:
-    <dd>Created a Python (version 3) interface to the router and routing database.
-  <dt>Extras:
-    <dd>Update documentation.
-    <br>Improve log summarisation HTML page formatting.
+    <dd>Change from distutils to setuptools for building.
+    <br>Do not try to install python module with 'make install' but suggest options.
+  <dt>Translations:
+    <dd>Updated French, Polish, Spanish translations.
+    <br>Added Slovak translation.
+  <dt>Documentation
+    <dd>Recommend multi-threaded sorting.
 </dl>
 
 <p>
-<b>Note:</b> This version is compatible with databases from versions 2.7.1 - 3.2.
+<b>Note:</b> This version is compatible with databases from versions 2.7.1 - 3.3.3.
+
+
+<h3 id="H_1_5_2" title="Other Versions">Other Versions</h3>
+
+There is a version of Routino (in subversion, on the branch called
+"destination-access") that allows the first and last waypoint of a
+route to be on highways with access="destination" or access="private".
+The database is not compatible with this version of Routino.
+
 
 
 <h2 id="H_1_6">License</h2>
@@ -349,7 +238,7 @@ software.
 
 <h3 id="H_1_6_1">Copyright</h3>
 
-Routino is copyright Andrew M. Bishop 2008-2020.
+Routino is copyright Andrew M. Bishop 2008-2023.
 
 
 <h2 id="H_1_7">Homepage</h2>

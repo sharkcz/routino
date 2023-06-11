@@ -138,6 +138,7 @@ Status
    Version 3.3.1 of Routino was released on 8th September 2019.
    Version 3.3.2 of Routino was released on 18th September 2019.
    Version 3.3.3 of Routino was released on 30th December 2020.
+   Version 3.4 of Routino was released on 11th June 2023.
 
    The full version history is available in the NEWS.txt file.
 
@@ -159,7 +160,7 @@ License
 Copyright
 ---------
 
-   Routino is copyright Andrew M. Bishop 2008-2020.
+   Routino is copyright Andrew M. Bishop 2008-2023.
 
 
 Homepage
@@ -194,4 +195,4 @@ Subversion
 
 --------
 
-Copyright 2008-2020 Andrew M. Bishop.
+Copyright 2008-2023 Andrew M. Bishop.
