@@ -2,25 +2,27 @@
 
 # Openlayers version (https://openlayers.org/)
 
-version=6.4.3
+version=7.4.0
 
 # Layer switcher version (https://github.com/walkermatt/ol-layerswitcher/)
 
-layer_switcher_version=3.7.0
+layer_switcher_version=4.1.1
 
 
 # Download the file.
 
-wget https://github.com/openlayers/openlayers/releases/download/v$version/v$version-dist.zip
+wget https://github.com/openlayers/openlayers/releases/download/v$version/v$version-package.zip
 
 # Uncompress it.
 
-unzip v$version-dist.zip
+unzip v$version-package.zip -d v$version-package
+
 
 # Move the files
 
-mv v$version-dist/* .
-rm -rf v$version-dist
+mv v$version-package/dist/* .
+mv v$version-package/ol.css .
+rm -rf v$version-package
 
 
 # Download the file
