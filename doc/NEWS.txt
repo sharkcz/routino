@@ -1,3 +1,36 @@
+Version 3.4 of Routino released : Sun Jun 11 2023
+-------------------------------------------------
+
+Bug fixes:
+  Avoid infinite recursion when parsing route relations.
+  Ignore excess data rather than fail to process huge route relations.
+
+planetsplitter:
+  Speed up node processing on large databases.
+  Merge some steps together to speed up processing.
+  Speed up multi-threaded sorting, increase default memory size.
+
+OSM tagging:
+  Don't route through barriers (fence, wall etc) explicitly tagged on a node.
+  Add platforms (public transport) as highways, equivalent to a path.
+  Only look for access tags on barriers not other nodes.
+
+Python:
+  Change from distutils to setuptools for building.
+  Do not try to install python module with 'make install' but suggest options.
+
+Translations:
+  Updated French, Polish, Spanish translations.
+  Added Slovak translation.
+
+Documentation
+  Recommend multi-threaded sorting.
+
+
+Note: This version is compatible with databases from versions 2.7.1 - 3.3.3.
+
+
+
 Version 3.3.3 of Routino released : Wed Dec 30 2020
 ---------------------------------------------------
 
