@@ -103,33 +103,7 @@ Status
 ------
 
    Version 1.0 of Routino was released on 8th April 2009.
-   Version 1.1 of Routino was released on 13th June 2009.
-   Version 1.2 of Routino was released on 21st October 2009.
-   Version 1.3 of Routino was released on 21st January 2010.
-   Version 1.4 of Routino was released on 31st May 2010.
-   Version 1.4.1 of Routino was released on 10th July 2010.
-   Version 1.5 of Routino was released on 30th October 2010.
-   Version 1.5.1 of Routino was released on 13th November 2010.
    Version 2.0 of Routino was released on 30th May 2011.
-   Version 2.0.1 of Routino was released on 7th June 2011.
-   Version 2.0.2 of Routino was released on 26th June 2011.
-   Version 2.0.3 of Routino was released on 4th August 2011.
-   Version 2.1 of Routino was released on 3rd October 2011.
-   Version 2.1.1 of Routino was released on 23rd October 2011.
-   Version 2.1.2 of Routino was released on 12th November 2011.
-   Version 2.2 of Routino was released on 3rd March 2012.
-   Version 2.3 of Routino was released on 21st July 2012.
-   Version 2.3.1 of Routino was released on 11th August 2012.
-   Version 2.3.2 of Routino was released on 6th October 2012.
-   Version 2.4 of Routino was released on 8th December 2012.
-   Version 2.4.1 of Routino was released on 17th December 2012.
-   Version 2.5 of Routino was released on 9th February 2013.
-   Version 2.5.1 of Routino was released on 20th April 2013.
-   Version 2.6 of Routino was released on 6th July 2013.
-   Version 2.7 of Routino was released on 22nd March 2014.
-   Version 2.7.1 of Routino was released on 17th May 2014.
-   Version 2.7.2 of Routino was released on 26th June 2014.
-   Version 2.7.3 of Routino was released on 8th November 2014.
    Version 3.0 of Routino was released on 12th September 2015.
    Version 3.1 of Routino was released on 5th March 2016.
    Version 3.1.1 of Routino was released on 6th March 2016.
@@ -141,6 +115,15 @@ Status
    Version 3.4 of Routino was released on 11th June 2023.
 
    The full version history is available in the NEWS.txt file.
+
+
+Other Versions
+- - - - - - -
+
+   There is a version of Routino (in subversion, on the branch called
+   "destination-access") that allows the first and last waypoint of a
+   route to be on highways with access="destination" or access="private".
+   The database is not compatible with this version of Routino.
 
 
 License
