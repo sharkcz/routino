@@ -3,7 +3,7 @@
 //
 // Part of the Routino routing software.
 //
-// This file Copyright 2008-2014, 2019, 2020 Andrew M. Bishop
+// This file Copyright 2008-2014, 2019, 2020, 2023 Andrew M. Bishop
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -103,6 +103,7 @@ function map_init()             // called from visualiser.html
  map = new ol.Map({target: "map",
                    view: new ol.View({minZoom: mapprops.zoomout,
                                       maxZoom: mapprops.zoomin,
+                                      constrainResolution: true,
                                       extent: extent}),
                    controls: []
                  });
