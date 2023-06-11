@@ -26,6 +26,10 @@ Translations:
 Documentation
   Recommend multi-threaded sorting.
 
+Web pages:
+  Test with the latest version of Leaflet (1.9.4).
+  Test with the latest version of OpenLayers (7.4.0).
+
 
 Note: This version is compatible with databases from versions 2.7.1 - 3.3.3.
 
