@@ -545,7 +545,8 @@ index_t filesort_vary(int fd_in,int fd_out,int (*pre_sort_function)(void*,index_
     Assume that data+FILESORT_VARALIGN+sizeof(void*) is 4*data. */
 
  if((datasize*4)<option_filesort_ramsize/option_filesort_threads)
-    /* use one thread */;
+    /* use one thread */
+    datasize=datasize*4;
  else if((datasize*4)<option_filesort_ramsize)
     datasize=(datasize*4)/option_filesort_threads;
  else
