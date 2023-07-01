@@ -113,6 +113,7 @@ Status
    Version 3.3.2 of Routino was released on 18th September 2019.
    Version 3.3.3 of Routino was released on 30th December 2020.
    Version 3.4 of Routino was released on 11th June 2023.
+   Version 3.4.1 of Routino was released on 1st July 2023.
 
    The full version history is available in the NEWS.txt file.
 
