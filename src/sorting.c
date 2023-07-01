@@ -143,7 +143,8 @@ index_t filesort_fixed(int fd_in,int fd_out,size_t itemsize,int (*pre_sort_funct
     return(0);
 
  if((nitems*(itemsize+sizeof(void*)))<(option_filesort_ramsize/option_filesort_threads))
-    /* use one thread */;
+    /* use one thread */
+    nitems=nitems+1;
  else if((nitems*(itemsize+sizeof(void*)))<option_filesort_ramsize)
     nitems=1+nitems/option_filesort_threads;
  else
